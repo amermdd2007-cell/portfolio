@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" data-type="service" data-radius="soft" data-buttons="tonal" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-ar-title-text="Bug Hunter: لعبة برمجة صمّمها وبناها عامر الدلق">Bug Hunter: a programming game, designed and built by Amer AL Dalaq</title>
+<meta name="description" content="How Bug Hunter 3.0 was redesigned in Figma to look like a real debugger, then rebuilt in Flutter and published on Google Play." data-ar-content="كيف أُعيد تصميم Bug Hunter 3.0 في Figma ليشبه أداة تصحيح حقيقية، ثم بُني بـ Flutter ونُشر على Google Play.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bug Hunter: a programming game, designed and built by Amer AL Dalaq">
+<meta property="og:description" content="How Bug Hunter 3.0 was redesigned in Figma to look like a real debugger, then rebuilt in Flutter and published on Google Play.">
+<meta property="og:image" content="../img/cover-bug-hunter.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f5f2ea">
+<meta name="site-kind" content="other">
+<meta name="page-type" content="service">
+<script>
+  (function(){var q=new URLSearchParams(location.search).get('lang');
+  if(q==='ar'){var r=document.documentElement;r.lang='ar';r.dir='rtl';r.classList.add('i18n-wait');setTimeout(function(){r.classList.remove('i18n-wait')},900)}})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@400&family=Work+Sans:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/system.css">
+<link rel="stylesheet" href="../assets/ui/cards.css">
+<link rel="stylesheet" href="../assets/motion/motion.css">
+<link rel="stylesheet" href="../assets/layout/layout.css">
+<link rel="stylesheet" href="../assets/icons/icon.css">
+<style>
+:root {
+  --p-bg: #f5f2ea; --p-surface: #ebe6da; --p-ink: #16181b; --p-muted: #5f5b53;
+  --p-accent: #f2a93b; --p-accent-ink: #111111; --p-action: #f2a93b; --p-action-ink: #111111;
+  --p-inv-bg: #16181b; --p-inv-surface: #232427; --p-inv-ink: #f5f2ea; --p-inv-muted: #979794;
+  --p-inv-accent: #f2a93b; --p-inv-accent-ink: #111111; --p-inv-action: #f2a93b; --p-inv-action-ink: #111111;
+  --font-display: "Vollkorn", Georgia, serif;
+  --font-text: "Work Sans", system-ui, sans-serif;
+  --display-weight: 400; --display-tracking: -0.015em; --display-tracking-xl: -0.02em; --ly-scale: 1.04;
+}
+</style>
+<link rel="stylesheet" href="../site.css">
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+</head>
+<body>
+<header class="nav nav--split">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top" data-ar="تخطَّ إلى المحتوى">Skip to content</a>
+    <nav class="nav__links" aria-label="Main" data-ar-aria="الرئيسية">
+      <div class="nav__item"><a class="nav__link" href="../index.html#work" data-ar="الأعمال">Work</a></div>
+      <div class="nav__item"><a class="nav__link" href="../index.html#about" data-ar="عنّي">About</a></div>
+      <div class="nav__item"><a class="nav__link" href="../index.html#services" data-ar="الخدمات">Services</a></div>
+    </nav>
+    <a class="nav__logo" href="../index.html"><span class="mark" data-mark="dots" aria-hidden="true"></span><span data-ar="عامر الدلق">Amer AL Dalaq</span></a>
+    <div class="nav__actions">
+      <button class="lang-toggle nav__link" type="button" data-lang-toggle lang="ar" aria-label="اقرأ الصفحة بالعربية">العربية</button>
+      <a class="btn btn--primary" href="mailto:amer.mdddd.2007@gmail.com" data-ar="راسل عامر">Email Amer</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu" data-ar-aria="القائمة">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<main id="top">
+  <section class="hero hero--split" data-enter aria-labelledby="hero-h">
+    <div class="wrap">
+      <div class="hero-text grid hero-split">
+        <div class="hero-copy span-6">
+          <p class="hero-notice" data-ar="مشروع فردي · تصميم وبرمجة · 2026">Solo project · Design and Flutter · 2026</p>
+          <h1 id="hero-h" data-ar="Bug Hunter، لعبة لتعلّم البرمجة">Bug Hunter, a game for learning to code</h1>
+          <p class="t-lead" data-ar="يصلّح اللاعب خطأً واحداً في كل مرحلة داخل كود حقيقي، بلغات مثل C++ وPython وJava. صمّمت منها ثلاث نسخ وبنيت كل نسخة بـ Flutter، وهي منشورة على Google Play.">Players fix one bug a level in real code, in C++, Python, Java and more. I designed three versions of it and built every one in Flutter; it is live on Google Play.</p>
+          <dl class="facts"><div><dt data-ar="دوري">My role</dt><dd data-ar="التصميم والبرمجة وصفحة المتجر">Design, Flutter, store page</dd></div><div><dt data-ar="السنة">Year</dt><dd data-ar="2026">2026</dd></div><div><dt data-ar="الشاشات">Screens</dt><dd data-ar="25 للجوال و3 للتابلت">25 phone, 3 tablet</dd></div></dl>
+        </div>
+        <div class="hero-visual frame frame--photo span-6 start-7">
+          <img class="frame__img" src="../img/cover-bug-hunter.jpg" srcset="../img/cover-bug-hunter-800.jpg 800w, ../img/cover-bug-hunter.jpg 1600w" sizes="(min-width: 1024px) 45vw, 92vw" width="1600" height="1200" alt="Home, game and result screens of Bug Hunter 3.0" data-ar-alt="شاشات الرئيسية واللعب والنتيجة في Bug Hunter 3.0" style="view-transition-name: p-bug-hunter" fetchpriority="high">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="story" aria-labelledby="story-h" style="height: auto">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-5">
+          <h2 id="story-h" data-ar="المشكلة والحل">The problem and the fix</h2>
+          <div class="story" data-reveal="stagger"><div><h3 data-ar="المشكلة">The problem</h3><p data-ar="كانت النسخة 2.0 مليئة بالتدرّجات اللامعة والبطاقات المضيئة والإيموجي. قال لي اللاعبون إنها تبدو مصنوعة بالذكاء الاصطناعي، وبعضهم لم يصدّق أن طالباً بناها.">Version 2.0 had neon gradients, glowing cards and emoji everywhere. Players told me it looked AI-made, and some did not believe a student had built it.</p></div><div><h3 data-ar="الحل">The fix</h3><p data-ar="النسخة 3.0 تأخذ من الأدوات التي يثق بها المبرمجون: أرقام الأسطر، وخط أحمر متموّج تحت الخطأ، ونقاط التوقف، وزوايا 4px، والكهرماني للتحذير فقط. بنيت النظام أولاً، ثم 25 شاشة للجوال و3 للتابلت، ثم التطبيق.">Version 3.0 copies the tools programmers already trust: line numbers, a red squiggle under the bug, breakpoint dots, 4px corners and amber only for warnings. I built the system first, then 25 phone and 3 tablet screens, then the app.</p></div><div><h3 data-ar="النتيجة">What came out</h3><p data-ar="نُشرت النسخة 3.0 على Google Play في نوفمبر 2026، مع صور متجر جديدة وبانر بالأسلوب نفسه.">The redesign shipped as version 3.0 on Google Play in November 2026, with new store screenshots and a store banner in the same style.</p></div></div>
+          <h3 class="t-label" style="margin-top: var(--s-7); color: var(--muted)" data-ar="الأدوات">Tools</h3>
+          <ul class="tools"><li><img src="../assets/icons/figma.svg" alt="" width="27" height="40" loading="lazy">Figma</li><li><img src="../assets/icons/flutter.svg" alt="" width="33" height="40" loading="lazy">Flutter</li><li><img src="../assets/icons/google-play.svg" alt="" width="36" height="40" loading="lazy">Google Play</li><li><img src="../assets/icons/claude.svg" alt="" width="40" height="40" loading="lazy">Claude</li></ul>
+        </div>
+        <div class="frame frame--photo span-6 start-7" style="aspect-ratio: 4 / 5; max-height: 708px" data-reveal-img>
+          <img class="frame__img" src="../img/bug-hunter/design-system.jpg" srcset="../img/bug-hunter/design-system-800.jpg 800w, ../img/bug-hunter/design-system.jpg 1600w" sizes="(min-width: 1024px) 45vw, 92vw" width="1600" height="2422" alt="The Bug Hunter 3.0 design system board: logo, colours, type and components" data-ar-alt="لوحة نظام تصميم Bug Hunter 3.0: الشعار والألوان والخطوط والمكوّنات" loading="lazy" style="object-position: 50% 0%">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="screens" aria-labelledby="screens-h" style="height: auto">
+    <div class="wrap">
+      <div class="section-head"><h2 id="screens-h" data-ar="شاشات الجوال في النسخة 3.0">Version 3.0 phone screens</h2><p data-ar="كل شاشة مبنية من المكوّنات العشرة نفسها: سطر الكود والتبويب واللوحة والوسم وغيرها.">Every screen is built from the same 10 components: the code line, the tab, the panel, the tag and the rest.</p></div>
+      <ul class="shots" data-reveal="stagger"><li><img src="../img/bug-hunter/home.jpg" srcset="../img/bug-hunter/home-340.jpg 340w, ../img/bug-hunter/home.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="Home: the next level opened like a code editor" data-ar-alt="الرئيسية: المرحلة التالية مفتوحة كمحرّر كود" loading="lazy"></li><li><img src="../img/bug-hunter/paths.jpg" srcset="../img/bug-hunter/paths-340.jpg 340w, ../img/bug-hunter/paths.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="Paths: languages listed like a file explorer" data-ar-alt="المسارات: اللغات كمستكشف ملفات" loading="lazy"></li><li><img src="../img/bug-hunter/game.jpg" srcset="../img/bug-hunter/game-340.jpg 340w, ../img/bug-hunter/game.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="The game: the bug line underlined in red" data-ar-alt="اللعب: سطر الخطأ وتحته خط أحمر" loading="lazy"></li><li><img src="../img/bug-hunter/result.jpg" srcset="../img/bug-hunter/result-340.jpg 340w, ../img/bug-hunter/result.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="Result: build passed, with the diff of the fix" data-ar-alt="النتيجة: نجح البناء مع الفرق بين السطرين" loading="lazy"></li><li><img src="../img/bug-hunter/daily-bug.jpg" srcset="../img/bug-hunter/daily-bug-340.jpg 340w, ../img/bug-hunter/daily-bug.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="The daily bug with a contribution graph" data-ar-alt="خطأ اليوم مع مخطط المساهمات" loading="lazy"></li><li><img src="../img/bug-hunter/season.jpg" srcset="../img/bug-hunter/season-340.jpg 340w, ../img/bug-hunter/season.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="The season as a list of passed and failed tests" data-ar-alt="الموسم كقائمة اختبارات ناجحة وفاشلة" loading="lazy"></li><li><img src="../img/bug-hunter/boss-fight.jpg" srcset="../img/bug-hunter/boss-fight-340.jpg 340w, ../img/bug-hunter/boss-fight.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="A boss fight against a timer" data-ar-alt="مواجهة الزعيم مع مؤقّت" loading="lazy"></li><li><img src="../img/bug-hunter/store.jpg" srcset="../img/bug-hunter/store-340.jpg 340w, ../img/bug-hunter/store.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="The points store with the Pro subscription" data-ar-alt="متجر النقاط مع اشتراك Pro" loading="lazy"></li></ul>
+    </div>
+  </section>
+  <section class="section" id="tablet" aria-labelledby="tablet-h" style="height: auto">
+    <div class="wrap">
+      <div class="section-head"><h2 id="tablet-h" data-ar="التابلت والهوية">Tablet and brand</h2><p data-ar="في التابلت يظهر الكود والمهمة جنباً إلى جنب. والشعار قوسا كود يحتضنان حشرة.">The tablet splits the code and the task side by side. The logo is two code braces holding a bug.</p></div>
+      <div class="wide" data-reveal="stagger"><img src="../img/bug-hunter/t2.jpg" srcset="../img/bug-hunter/t2-800.jpg 800w, ../img/bug-hunter/t2.jpg 1200w" sizes="(min-width: 1024px) 45vw, 92vw" width="1200" height="1727" alt="The game on an iPad: code on one side, the task on the other" data-ar-alt="اللعب على الآيباد: الكود في جهة والمهمة في الأخرى" loading="lazy"><img src="../img/bug-hunter/logo.jpg" srcset="../img/bug-hunter/logo-800.jpg 800w, ../img/bug-hunter/logo.jpg 800w" sizes="(min-width: 1024px) 45vw, 92vw" width="800" height="800" alt="The Bug Hunter logo: braces around a bug on amber" data-ar-alt="شعار Bug Hunter: قوسان حول حشرة على الكهرماني" loading="lazy"></div>
+    </div>
+  </section>
+  <section class="section" id="before" aria-labelledby="before-h" style="height: auto">
+    <div class="wrap">
+      <div class="section-head"><h2 id="before-h" data-ar="قبل: النسخة 2.0">Before: version 2.0</h2><p data-ar="الشكل الذي شكّك فيه اللاعبون: تدرّجات وتوهّج وإيموجي. اللعبة والمحتوى نفسهما.">The look players doubted: neon gradients, glow and emoji. Same game, same content.</p></div>
+      <ul class="shots" data-reveal="stagger"><li><img src="../img/bug-hunter/v2-home.jpg" srcset="../img/bug-hunter/v2-home-340.jpg 340w, ../img/bug-hunter/v2-home.jpg 390w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="390" height="844" alt="Version 2.0 home screen" data-ar-alt="الرئيسية في النسخة 2.0" loading="lazy"></li><li><img src="../img/bug-hunter/v2-paths.jpg" srcset="../img/bug-hunter/v2-paths-340.jpg 340w, ../img/bug-hunter/v2-paths.jpg 390w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="390" height="844" alt="Version 2.0 paths" data-ar-alt="المسارات في النسخة 2.0" loading="lazy"></li><li><img src="../img/bug-hunter/v2-level.jpg" srcset="../img/bug-hunter/v2-level-340.jpg 340w, ../img/bug-hunter/v2-level.jpg 390w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="390" height="844" alt="Version 2.0 level" data-ar-alt="المرحلة في النسخة 2.0" loading="lazy"></li><li><img src="../img/bug-hunter/v2-store.jpg" srcset="../img/bug-hunter/v2-store-340.jpg 340w, ../img/bug-hunter/v2-store.jpg 390w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="390" height="844" alt="Version 2.0 store" data-ar-alt="المتجر في النسخة 2.0" loading="lazy"></li></ul>
+    </div>
+  </section>
+  <section class="section" aria-label="Next project" data-ar-aria="المشروع التالي" style="height: auto; padding-top: 0">
+    <div class="wrap">
+      <a class="next" href="reels.html"><span><span class="t-label" data-ar="المشروع التالي">Next project</span><span class="next__name" data-ar="فيديوهات @bughunter_code">Reels for @bughunter_code</span></span><svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    </div>
+  </section>
+</main>
+<footer class="footer closing footer--dark ground-inverse" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--word">
+      <div class="section-head--split">
+        <div><h2 id="close-h" data-ar="راسل عامر بخصوص مشروعك">Email Amer about your project</h2><p class="t-lead" data-ar="اكتب لي بالعربية أو الإنجليزية: ما الفكرة، ولمن، ومتى تحتاجها.">Write in Arabic or English: the idea, who it is for and when you need it.</p></div>
+        <a class="btn btn--primary" href="mailto:amer.mdddd.2007@gmail.com"><span data-ar="راسل عامر">Email Amer</span><svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      </div>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="../index.html"><span class="mark" data-mark="dots" aria-hidden="true"></span><span data-ar="عامر الدلق">Amer AL Dalaq</span></a>
+          <p class="footer__lede" data-ar="أصمّم التطبيقات والهويات، وأبنيها.">I design apps and brands, and build them.</p>
+        </div>
+        <div class="span-2 footer__col"><h3 data-ar="الأعمال">Work</h3><ul>
+          <li><a href="bug-hunter.html">Bug Hunter</a></li>
+          <li><a href="reels.html" data-ar="الفيديوهات">Reels</a></li>
+          <li><a href="wasla.html" data-ar="وَصلة">Wasla</a></li>
+          <li><a href="masar.html" data-ar="مسار">Masar</a></li>
+          <li><a href="travel-jo.html">Travel JO</a></li>
+        </ul></div>
+        <div class="span-2 footer__col"><h3 data-ar="عنّي">About</h3><ul>
+          <li><a href="../index.html#about" data-ar="قصتي">My story</a></li>
+          <li><a href="../index.html#process" data-ar="طريقة عملي">How I work</a></li>
+          <li><a href="../index.html#services" data-ar="الخدمات">Services</a></li>
+        </ul></div>
+        <div class="span-2 footer__col"><h3 data-ar="تواصل">Contact</h3><ul>
+          <li><a href="mailto:amer.mdddd.2007@gmail.com" data-ar="البريد">Email</a></li>
+        </ul></div>
+        <div class="span-2 footer__col"><h3 data-ar="اللغة">Language</h3><ul>
+          <li><a href="bug-hunter.html" lang="en">English</a></li>
+          <li><a href="bug-hunter.html?lang=ar" lang="ar">العربية</a></li>
+        </ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 <span data-ar="عامر الدلق">Amer AL Dalaq</span></span>
+        <span data-ar="أسماء المنتجات وشعاراتها علامات تجارية لأصحابها.">Product names and logos are trademarks of their owners.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+<script type="module" src="../site.js"></script>
+<script type="module" src="../assets/system.js"></script>
+<script type="module" src="../assets/motion/motion.js"></script>
+<script type="module" src="../assets/layout/layout.js"></script>
+</body>
+</html>

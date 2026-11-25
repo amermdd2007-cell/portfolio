@@ -1,0 +1,138 @@
+/* Page CSS for Amer's portfolio: what the kit lacks. The Arabic face, the work reveal, the page-to-page
+   transition, the project pages' facts and galleries, the language button. Tokens only. */
+
+/* ---- Arabic: one face for both jobs, no tracking (Arabic letters join) */
+html[lang="ar"] {
+  --font-display: "IBM Plex Sans Arabic", "Work Sans", system-ui, sans-serif;
+  --font-text: "IBM Plex Sans Arabic", "Work Sans", system-ui, sans-serif;
+  --display-tracking: 0; --display-tracking-xl: 0;
+}
+html[lang="ar"] :is(h1, h2, h3, .nav__logo, .footer__name) { letter-spacing: 0; }
+html[lang="ar"] .m-arrow { transform: scaleX(-1); }
+/* Latin words inside Arabic text (Flutter, Google Play, C++) keep their own order */
+bdi, .ltr { unicode-bidi: isolate; }
+.ltr { direction: ltr; display: inline-block; }
+
+/* the page waits a moment for the Arabic words instead of flashing English (set in <head> only when Arabic was chosen) */
+html.i18n-wait body { visibility: hidden; }
+
+/* ---- the language button: a plain nav word */
+.lang-toggle {
+  appearance: none; background: none; border: 0; padding: 0; cursor: pointer;
+  font: 500 15px/1 var(--font-text); color: inherit; min-height: 44px;
+}
+.lang-toggle:lang(ar) { font-family: "IBM Plex Sans Arabic", var(--font-text); }
+
+/* ---- the work cards come in once as they reach the screen: site.js runs it with WAAPI, nothing is hidden in CSS */
+
+/* ---- opening a project: the page cross-fades and the project's picture carries over */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 260ms; animation-timing-function: cubic-bezier(.23, 1, .32, 1); }
+::view-transition-group(*) { animation-duration: 420ms; animation-timing-function: cubic-bezier(.23, 1, .32, 1); }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+
+/* ---- project tiles on the home page */
+.tile__tag { color: var(--muted); font-size: var(--t-small); }
+.tile__media > img { display: block; }
+#work .tile--big { --tile-ratio: 4 / 3; }
+#work .tile--small { --tile-ratio: 4 / 3; }
+
+/* ---- tools row (real icons) */
+.tools { display: flex; flex-wrap: wrap; gap: var(--s-4) var(--s-6); margin: 0; padding: 0; list-style: none; }
+.tools li { display: inline-flex; align-items: center; gap: var(--s-3); font-size: var(--t-body); }
+.tools img { width: auto; height: 28px; }
+
+/* ---- project pages */
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); margin: var(--s-7) 0 0; padding-top: var(--s-5); border-top: 1px solid color-mix(in oklab, var(--ink) 13%, transparent); }
+.facts dt { color: var(--muted); font-size: var(--t-label); font-weight: 500; margin-bottom: var(--s-2); }
+.facts dd { margin: 0; font-size: var(--t-body); line-height: 1.5; }
+@media (max-width: 639px) { .facts { grid-template-columns: 1fr; gap: var(--s-4); } }
+
+.case-hero__media { width: 100%; min-width: 0; align-self: start; overflow: clip; border-radius: var(--r-lg); background: var(--surface); aspect-ratio: 4 / 3; }
+.case-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.story { display: grid; gap: var(--s-6); }
+.story h3 { font: 500 var(--t-card)/1.3 var(--font-text); margin: 0 0 var(--s-2); }
+.story p { margin: 0; max-width: 58ch; line-height: 1.65; }
+
+/* phone screens: four a row at 1440, two on a phone, one ratio */
+.shots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-5); margin: 0; padding: 0; list-style: none; }
+.shots img { width: 100%; height: auto; display: block; border-radius: var(--r-md); background: var(--surface); }
+.shots--five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 1023px) { .shots, .shots--five { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 639px) { .shots, .shots--five { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); } }
+
+/* wide pictures: one or two a row */
+.wide { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5); }
+.wide--one { grid-template-columns: 1fr; }
+.wide img { width: 100%; height: auto; display: block; border-radius: var(--r-lg); background: var(--surface); }
+@media (max-width: 767px) { .wide { grid-template-columns: 1fr; } }
+
+/* reels: 9:16 films, poster first, play on a click */
+.films { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); margin: 0; padding: 0; list-style: none; }
+.films video { width: 100%; aspect-ratio: 9 / 16; display: block; border-radius: var(--r-lg); background: #101113; object-fit: cover; }
+.films h3 { font: 500 var(--t-card)/1.3 var(--font-text); margin: var(--s-4) 0 var(--s-1); }
+.films p { margin: 0; color: var(--muted); font-size: var(--t-small); }
+@media (max-width: 767px) { .films { grid-template-columns: 1fr; max-width: 360px; } }
+
+.numbers { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-5); margin: var(--s-7) 0 0; }
+.numbers dt { color: var(--muted); font-size: var(--t-label); font-weight: 500; }
+.numbers dd { margin: var(--s-1) 0 0; font: 400 var(--t-stat)/1.1 var(--font-display); letter-spacing: var(--display-tracking); }
+@media (max-width: 767px) { .numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* next project: one linked row */
+.next { display: flex; align-items: center; justify-content: space-between; gap: var(--s-5); padding: var(--s-6) 0; border-top: 1px solid color-mix(in oklab, var(--ink) 13%, transparent); color: inherit; text-decoration: none; }
+.next__name { font: 400 var(--t-h2)/1.1 var(--font-display); letter-spacing: var(--display-tracking); }
+.next .t-label { color: var(--muted); display: block; margin-bottom: var(--s-2); }
+@media (hover: hover) and (pointer: fine) {
+  .next .m-arrow { transition: transform 150ms var(--ease); }
+  .next:hover .m-arrow { transform: translateX(3px); }
+  html[lang="ar"] .next:hover .m-arrow { transform: scaleX(-1) translateX(3px); }
+}
+.next .m-arrow { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+
+/* ---- home page heights: every section one or two screens at every width (checker SR-2) */
+#work .tile--big { --tile-ratio: 16 / 9; }
+.about-photo { aspect-ratio: 1 / 1; }
+.services-photo { aspect-ratio: 1 / 1; }
+@media (max-width: 1023px) {
+  .about-photo, .services-photo { aspect-ratio: 16 / 9; }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  /* the three steps stay one row on a tablet, each with a short strip of its picture */
+  #process .grid > .card { grid-column: auto / span 4; }
+  #process .card > .panel { --p-h: 140px; min-height: 140px; }
+  .closing__cta > .close__media { min-height: 120px; }
+  #work .group .grid > .tile--big { grid-column: 1 / -1; --tile-ratio: 3 / 1; }
+  #work .grid > .tile--small { grid-column: auto / span 6; }
+  #work .grid > .tile--small:last-child { grid-column: 1 / -1; }
+  #work .tile--small:last-child .tile__media { aspect-ratio: 16 / 7; }
+}
+@media (max-width: 639px) {
+  #work .tile--big { --tile-ratio: 2 / 1; }
+  #work .tile__head { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4); }
+  .services-photo { aspect-ratio: 2 / 1; }
+  #services .rows { margin-top: var(--s-5) !important; }
+}
+
+@media (min-width: 800px) and (max-width: 1023px) { #work .group .grid > .tile--big { --tile-ratio: 5 / 2; } }
+/* 1024 to 1279: the three steps stay one row (the kit sends span-4 cards two-up there) */
+@media (min-width: 1024px) and (max-width: 1279px) { #process .grid > .card { grid-column: auto / span 4; } }
+
+
+/* ---- the amber of Bug Hunter as the one accent: small marks only (text stays ink for contrast) */
+#process .step-num { background: var(--p-accent); color: var(--p-accent-ink); border-color: transparent; }
+.hero-notice::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--p-accent); margin-inline-end: 8px; vertical-align: 1px; }
+.next__name { transition: color 150ms var(--ease); }
+@media (hover: hover) and (pointer: fine) { .next:hover .next__name { color: color-mix(in oklab, var(--ink) 70%, var(--p-accent)); } }
+
+/* the focus ring: ink on the light grounds (amber is only 1.8:1 on cream), amber on the dark ones */
+:focus-visible { outline-color: var(--p-ink); }
+.ground-inverse :focus-visible, .footer--dark :focus-visible { outline-color: var(--p-accent); }
+
+/* audit fixes: no glow behind the step pictures; list rows breathe above their rule */
+#process .panel::before { display: none; }
+#services .rows li { padding-block: var(--s-3) var(--s-4); }
