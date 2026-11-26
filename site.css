@@ -152,3 +152,18 @@ html[lang="ar"] .hero h1 { letter-spacing: 0; }
 /* reels: a whole film fits the screen height */
 .films { justify-content: center; grid-template-columns: repeat(3, minmax(0, calc(min(70svh, 640px) * 9 / 16))); }
 @media (max-width: 767px) { .films { grid-template-columns: minmax(0, min(100%, calc(70svh * 9 / 16))); margin-inline: auto; } }
+
+/* ---- How I built it: the stack as rows, the real code beside it */
+.built { background: #111214; }
+.built__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-8); align-items: start; margin-top: var(--s-7); }
+.stack-list { list-style: none; margin: 0; padding: 0; }
+.stack-list li { display: grid; gap: 4px; padding: 18px 0; border-top: 1px solid color-mix(in oklab, var(--ink) 13%, transparent); }
+.stack-list li:last-child { border-bottom: 1px solid color-mix(in oklab, var(--ink) 13%, transparent); }
+.stack-list b { font: 700 20px/1.25 var(--font-display); letter-spacing: -0.015em; color: var(--ink); }
+html[lang="ar"] .stack-list b { letter-spacing: 0; }
+.stack-list b::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--pc, #f2a93b); margin-inline-end: 12px; vertical-align: 3px; }
+.stack-list span { color: var(--muted); line-height: 1.55; }
+.code-shots { display: grid; gap: var(--s-5); }
+.code-shot { margin: 0; border-radius: var(--r-lg); overflow: hidden; border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); background: #1e1e1e; }
+.code-shot img { width: 100%; height: auto; display: block; direction: ltr; }
+@media (max-width: 1023px) { .built__grid { grid-template-columns: 1fr; gap: var(--s-7); } }

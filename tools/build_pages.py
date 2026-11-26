@@ -2,7 +2,7 @@
 Each page: the shared nav, a hero (name, summary, role / year / tools, the cover that carries over
 from the home page), the problem and the fix, the work itself, the next project, the shared footer.
 Every visible line has its Arabic in data-ar."""
-import html, os
+import html, os, re
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -243,6 +243,23 @@ def story3d(p):
 '''
 
 
+def built(items, pics, h, h_ar, line, line_ar):
+    """How it is built: the stack as plain rows beside real code from the project."""
+    rows = ''.join(
+        f'<li><b data-ar="{a(n_ar)}">{n}</b><span data-ar="{a(d_ar)}">{d}</span></li>' for n, n_ar, d, d_ar in items)
+    shots_html = ''.join(f'<figure class="code-shot">{img(s_, e, r)}</figure>' for s_, e, r in pics)
+    return f'''  <section class="section built" id="built" aria-labelledby="built-h" style="height: auto">
+    <div class="wrap">
+      <div class="section-head"><h2 id="built-h" data-ar="{a(h_ar)}">{h}</h2><p data-ar="{a(line_ar)}">{line}</p></div>
+      <div class="built__grid">
+        <ul class="stack-list" data-reveal="stagger">{rows}</ul>
+        <div class="code-shots" data-reveal="stagger">{shots_html}</div>
+      </div>
+    </div>
+  </section>
+'''
+
+
 def section(sid, h, h_ar, line, line_ar, body):
     sub = f'<p data-ar="{a(line_ar)}">{line}</p>' if line else ''
     return f'''  <section class="section" id="{sid}" aria-labelledby="{sid}-h" style="height: auto">
@@ -352,7 +369,21 @@ P.append(dict(
     ],
 
     body=lambda: (
-        section('tablet', 'Tablet and brand', 'التابلت والهوية',
+        built([
+            ('Flutter and Dart', 'Flutter وDart', 'The whole app, Arabic and English, phone and tablet, from my own designs.', 'التطبيق كاملاً بالعربية والإنجليزية، للجوال والتابلت، من تصاميمي.'),
+            ('A Dart server in Docker', 'سيرفر Dart داخل Docker', 'shelf and SQLite for accounts, seasons, contests and duels, running on a server at home.', 'shelf وSQLite للحسابات والمواسم والمسابقات والمبارزات، يعمل على سيرفر في البيت.'),
+            ('Judge0 for the code lab', 'Judge0 لمختبر الكود', 'Players write and run real code; Judge0 runs it safely, away from the app.', 'يكتب اللاعب كوداً حقيقياً ويشغّله؛ وJudge0 يشغّله بأمان بعيداً عن التطبيق.'),
+            ('A fair contest', 'مسابقة عادلة', 'Google Sign-In and Play Integrity, so every score comes from a real install.', 'تسجيل دخول Google وPlay Integrity، لتأتي كل نتيجة من تطبيق حقيقي.'),
+            ('An admin dashboard', 'لوحة تحكم', 'New levels, lessons and contests go live without a new app version.', 'مراحل ودروس ومسابقات جديدة تُنشر دون إصدار نسخة جديدة من التطبيق.'),
+            ('AdMob and a Pro plan', 'AdMob واشتراك Pro', 'Ads, plus a subscription through Google Play billing.', 'إعلانات، واشتراك عبر الدفع في Google Play.'),
+            ('Close to 300 automated tests', 'قرابة 300 اختبار تلقائي', 'So more than 30 updates shipped without breaking what already worked.', 'لتخرج أكثر من 30 تحديثاً دون أن ينكسر ما كان يعمل.'),
+        ], [
+            ('bug-hunter/code-daily.jpg', 'Dart code in VS Code that picks each player a daily bug for their level', 'كود Dart في VS Code يختار لكل لاعب خطأ اليوم على قدّ مستواه'),
+            ('bug-hunter/code-ui.jpg', 'Flutter code in VS Code for the home screen card', 'كود Flutter في VS Code لبطاقة الشاشة الرئيسية'),
+        ], 'How I built it', 'كيف بنيتها',
+           '400+ levels, 200+ lessons and 13 paths, from C++ and Python to SQL, Linux and cyber security, all in one app I code myself.',
+           'أكثر من 400 مرحلة و200 درس و13 مساراً، من C++ وPython إلى SQL وLinux والأمن السيبراني، في تطبيق واحد أبرمجه بنفسي.')
+        + section('tablet', 'Tablet and brand', 'التابلت والهوية',
                 'The tablet splits the code and the task side by side. The logo is two code braces holding a bug.',
                 'في التابلت يظهر الكود والمهمة جنباً إلى جنب. والشعار قوسا كود يحتضنان حشرة.',
                 wide([('bug-hunter/t2.jpg', 'The game on an iPad: code on one side, the task on the other', 'اللعب على الآيباد: الكود في جهة والمهمة في الأخرى'),
@@ -607,6 +638,8 @@ def build(p):
     out += hero(p) + (story3d(p) if p.get('steps') else story(p)) + p['body']() + nxt(p)
     out += FOOT.format(mail=MAIL, arrow=ARROW, slug=p['slug'])
     os.makedirs(os.path.join(ROOT, 'work'), exist_ok=True)
+    # Latin code words inside Arabic text keep their own direction (C++ never shows as ++C)
+    out = re.sub(r'(data-ar(?:-[a-z]+)?="[^"]*")', lambda m: m.group(1).replace('C++', '⁦C++⁩'), out)
     with open(os.path.join(ROOT, 'work', p['slug'] + '.html'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(out)
 
