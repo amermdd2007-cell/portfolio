@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-type="service" data-radius="soft" data-buttons="tonal" data-motion>
+<html lang="en" data-type="service" data-radius="soft" data-buttons="pill" data-motion style="--pc: #f2a93b">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -11,7 +11,7 @@
 <meta property="og:image" content="../img/cover-bug-hunter.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#f5f2ea">
+<meta name="theme-color" content="#0d0e10">
 <meta name="site-kind" content="other">
 <meta name="page-type" content="service">
 <script>
@@ -20,7 +20,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@400&family=Work+Sans:wght@400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Serif:ital@1&family=Work+Sans:wght@400..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/system.css">
 <link rel="stylesheet" href="../assets/ui/cards.css">
 <link rel="stylesheet" href="../assets/motion/motion.css">
@@ -28,16 +28,17 @@
 <link rel="stylesheet" href="../assets/icons/icon.css">
 <style>
 :root {
-  --p-bg: #f5f2ea; --p-surface: #ebe6da; --p-ink: #16181b; --p-muted: #5f5b53;
+  --p-bg: #0d0e10; --p-surface: #16181b; --p-ink: #f2efe8; --p-muted: #9a968d;
   --p-accent: #f2a93b; --p-accent-ink: #111111; --p-action: #f2a93b; --p-action-ink: #111111;
-  --p-inv-bg: #16181b; --p-inv-surface: #232427; --p-inv-ink: #f5f2ea; --p-inv-muted: #979794;
+  --p-inv-bg: #16181b; --p-inv-surface: #1d2024; --p-inv-ink: #f2efe8; --p-inv-muted: #9a968d;
   --p-inv-accent: #f2a93b; --p-inv-accent-ink: #111111; --p-inv-action: #f2a93b; --p-inv-action-ink: #111111;
-  --font-display: "Vollkorn", Georgia, serif;
+  --font-display: "Bricolage Grotesque", "Work Sans", system-ui, sans-serif;
   --font-text: "Work Sans", system-ui, sans-serif;
-  --display-weight: 400; --display-tracking: -0.015em; --display-tracking-xl: -0.02em; --ly-scale: 1.04;
+  --display-weight: 700; --display-tracking: -0.035em; --display-tracking-xl: -0.045em; --ly-scale: 1.04;
 }
 </style>
 <link rel="stylesheet" href="../site.css">
+<link rel="stylesheet" href="../story3d.css">
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
 <body>
@@ -64,10 +65,10 @@
     <div class="wrap">
       <div class="hero-text grid hero-split">
         <div class="hero-copy span-6">
-          <p class="hero-notice" data-ar="مشروع فردي · تصميم وبرمجة · 2026">Solo project · Design and Flutter · 2026</p>
           <h1 id="hero-h" data-ar="Bug Hunter، لعبة لتعلّم البرمجة">Bug Hunter, a game for learning to code</h1>
           <p class="t-lead" data-ar="يصلّح اللاعب خطأً واحداً في كل مرحلة داخل كود حقيقي، بلغات مثل C++ وPython وJava. صمّمت منها ثلاث نسخ وبنيت كل نسخة بـ Flutter، وهي منشورة على Google Play.">Players fix one bug a level in real code, in C++, Python, Java and more. I designed three versions of it and built every one in Flutter; it is live on Google Play.</p>
           <dl class="facts"><div><dt data-ar="دوري">My role</dt><dd data-ar="التصميم والبرمجة وصفحة المتجر">Design, Flutter, store page</dd></div><div><dt data-ar="السنة">Year</dt><dd data-ar="2026">2026</dd></div><div><dt data-ar="الشاشات">Screens</dt><dd data-ar="25 للجوال و3 للتابلت">25 phone, 3 tablet</dd></div></dl>
+          <ul class="tools"><li><img src="../assets/icons/figma.svg" alt="" width="27" height="40" loading="lazy">Figma</li><li><img src="../assets/icons/flutter.svg" alt="" width="33" height="40" loading="lazy">Flutter</li><li><img src="../assets/icons/google-play.svg" alt="" width="36" height="40" loading="lazy">Google Play</li><li><img src="../assets/icons/claude.svg" alt="" width="40" height="40" loading="lazy">Claude</li></ul>
         </div>
         <div class="hero-visual frame frame--photo span-6 start-7">
           <img class="frame__img" src="../img/cover-bug-hunter.jpg" srcset="../img/cover-bug-hunter-800.jpg 800w, ../img/cover-bug-hunter.jpg 1600w" sizes="(min-width: 1024px) 45vw, 92vw" width="1600" height="1200" alt="Home, game and result screens of Bug Hunter 3.0" data-ar-alt="شاشات الرئيسية واللعب والنتيجة في Bug Hunter 3.0" style="view-transition-name: p-bug-hunter" fetchpriority="high">
@@ -75,37 +76,30 @@
       </div>
     </div>
   </section>
-  <section class="section" id="story" aria-labelledby="story-h" style="height: auto">
-    <div class="wrap">
-      <div class="grid grid--top">
-        <div class="span-5">
-          <h2 id="story-h" data-ar="المشكلة والحل">The problem and the fix</h2>
-          <div class="story" data-reveal="stagger"><div><h3 data-ar="المشكلة">The problem</h3><p data-ar="كانت النسخة 2.0 مليئة بالتدرّجات اللامعة والبطاقات المضيئة والإيموجي. قال لي اللاعبون إنها تبدو مصنوعة بالذكاء الاصطناعي، وبعضهم لم يصدّق أن طالباً بناها.">Version 2.0 had neon gradients, glowing cards and emoji everywhere. Players told me it looked AI-made, and some did not believe a student had built it.</p></div><div><h3 data-ar="الحل">The fix</h3><p data-ar="النسخة 3.0 تأخذ من الأدوات التي يثق بها المبرمجون: أرقام الأسطر، وخط أحمر متموّج تحت الخطأ، ونقاط التوقف، وزوايا 4px، والكهرماني للتحذير فقط. بنيت النظام أولاً، ثم 25 شاشة للجوال و3 للتابلت، ثم التطبيق.">Version 3.0 copies the tools programmers already trust: line numbers, a red squiggle under the bug, breakpoint dots, 4px corners and amber only for warnings. I built the system first, then 25 phone and 3 tablet screens, then the app.</p></div><div><h3 data-ar="النتيجة">What came out</h3><p data-ar="نُشرت النسخة 3.0 على Google Play في نوفمبر 2026، مع صور متجر جديدة وبانر بالأسلوب نفسه.">The redesign shipped as version 3.0 on Google Play in November 2026, with new store screenshots and a store banner in the same style.</p></div></div>
-          <h3 class="t-label" style="margin-top: var(--s-7); color: var(--muted)" data-ar="الأدوات">Tools</h3>
-          <ul class="tools"><li><img src="../assets/icons/figma.svg" alt="" width="27" height="40" loading="lazy">Figma</li><li><img src="../assets/icons/flutter.svg" alt="" width="33" height="40" loading="lazy">Flutter</li><li><img src="../assets/icons/google-play.svg" alt="" width="36" height="40" loading="lazy">Google Play</li><li><img src="../assets/icons/claude.svg" alt="" width="40" height="40" loading="lazy">Claude</li></ul>
-        </div>
-        <div class="frame frame--photo span-6 start-7" style="aspect-ratio: 4 / 5; max-height: 708px" data-reveal-img>
-          <img class="frame__img" src="../img/bug-hunter/design-system.jpg" srcset="../img/bug-hunter/design-system-800.jpg 800w, ../img/bug-hunter/design-system.jpg 1600w" sizes="(min-width: 1024px) 45vw, 92vw" width="1600" height="2422" alt="The Bug Hunter 3.0 design system board: logo, colours, type and components" data-ar-alt="لوحة نظام تصميم Bug Hunter 3.0: الشعار والألوان والخطوط والمكوّنات" loading="lazy" style="object-position: 50% 0%">
+  <section class="s3" data-story aria-labelledby="s3-h">
+    <div class="s3__pin">
+      <div class="wrap">
+        <h2 id="s3-h" class="sr-only" data-ar="Bug Hunter، شاشة شاشة">Bug Hunter, screen by screen</h2>
+        <div class="s3__grid">
+          <div class="s3__editor">
+            <div class="s3__tabs"><span class="dot" aria-hidden="true"></span><b>bug-hunter.case</b><span>· 7 steps</span></div>
+            <p class="s3__cmd" aria-hidden="true"><span class="p">$</span> <span data-type>open bug-hunter --case-study</span><span class="caret"></span></p>
+            <div class="s3__steps"><div class="s3__step"><span class="s3__ln">01</span><div><span class="c" data-ar="// قبل: النسخة 2.0">// before: v2.0</span><h3 data-ar="قال اللاعبون إنها تبدو مصنوعة بالذكاء الاصطناعي">Players said it looked AI-made</h3><p data-ar="تدرّجات لامعة وبطاقات مضيئة وإيموجي في كل مكان. بعض اللاعبين لم يصدّقوا أن طالباً بناها، فكان لا بد أن يتغيّر الشكل لا اللعبة.">Neon gradients, glowing cards and emoji everywhere. Some players did not believe a student had built it, so the look had to change, not the game.</p></div></div><div class="s3__step"><span class="s3__ln">04</span><div><span class="c" data-ar="// الرئيسية">// home</span><h3 data-ar="الرئيسية تُفتح كمحرّر كود">Home opens like a code editor</h3><p data-ar="المرحلة التالية تنتظر في تبويب محرّر بأرقام أسطر والخطأ معلَّم مسبقاً. يرى اللاعب الكود قبل أن يرى أي قائمة.">The next level waits in an editor tab with line numbers and the bug already marked. Players see code before they see a menu.</p></div></div><div class="s3__step"><span class="s3__ln">07</span><div><span class="c" data-ar="// المسارات">// paths</span><h3 data-ar="اللغات كمستكشف ملفات">Languages as a file explorer</h3><p data-ar="C++ وPython وJava وباقي اللغات في شجرة ملفات مع تقدّم كل منها، كما يتصفح المبرمج مشروعه.">C++, Python, Java and the rest sit in an explorer tree with their progress, the way a programmer browses a project.</p></div></div><div class="s3__step"><span class="s3__ln">10</span><div><span class="c" data-ar="// اللعب">// game</span><h3 data-ar="الخطأ تحته خط أحمر متموّج">The bug gets a red squiggle</h3><p data-ar="السطر الخاطئ عليه &lt;b&gt;نقطة توقف&lt;/b&gt; وخط أحمر متموّج، كتحذير المترجم. ولوحة المخرجات تعرض خطأ التشغيل الحقيقي.">The broken line has a <b>breakpoint dot</b> and a red squiggle, like a compiler warning. The output panel shows the real runtime error.</p></div></div><div class="s3__step"><span class="s3__ln">13</span><div><span class="c" data-ar="// النتيجة">// result</span><h3 data-ar="نجح البناء، مع الفرق">Build passed, with the diff</h3><p data-ar="بدل الاحتفالات، يحصل اللاعب على ما يحصل عليه المطوّر: &lt;b&gt;BUILD PASSED&lt;/b&gt;، والوقت، والنقاط، والفرق الأحمر والأخضر للسطر الذي أصلحه.">Instead of confetti, the player gets what a developer gets: <b>BUILD PASSED</b>, the time, the points and the red and green diff of the fixed line.</p></div></div><div class="s3__step"><span class="s3__ln">16</span><div><span class="c" data-ar="// اليومي">// daily</span><h3 data-ar="مخطط مساهمات للأيام المتتالية">A contribution graph for streaks</h3><p data-ar="خطأ اليوم يحفظ شبكة الأيام المحلولة باللون الكهرماني، المخطط نفسه الذي يعرفه المبرمجون من سجل أكوادهم.">The daily bug keeps a grid of solved days in amber, the same graph programmers know from their code history.</p></div></div><div class="s3__step"><span class="s3__ln">19</span><div><span class="c" data-ar="// الموسم">// season</span><h3 data-ar="الموسم كتشغيل اختبارات">The season as a test run</h3><p data-ar="كل أسبوع اختبار: PASS بالأخضر وFAIL بالأحمر. 25 شاشة للجوال و3 للتابلت، كلها مبنية من المكوّنات العشرة نفسها.">Each week is a test: PASS in green, FAIL in red. 25 phone and 3 tablet screens, all built from the same 10 components.</p></div></div></div>
+            <ol class="s3__stack" aria-label="Steps" data-ar-aria="الخطوات"><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="قبل: النسخة 2.0">before: v2.0</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="الرئيسية">home</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="المسارات">paths</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="اللعب">game</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="النتيجة">result</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="اليومي">daily</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="الموسم">season</span></button></li></ol>
+            <div class="s3__bar" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="s3__stage">
+            <div class="s3__ring"><figure class="s3__card"><img src="../img/bug-hunter/v2-home.jpg" srcset="../img/bug-hunter/v2-home-340.jpg 340w, ../img/bug-hunter/v2-home.jpg 390w" sizes="(min-width: 1024px) 250px, 46vw" width="390" height="844" alt="Version 2.0 home screen with neon gradients" data-ar-alt="الرئيسية في النسخة 2.0 بالتدرّجات اللامعة" loading="lazy"></figure><figure class="s3__card"><img src="../img/bug-hunter/home.jpg" srcset="../img/bug-hunter/home-340.jpg 340w, ../img/bug-hunter/home.jpg 600w" sizes="(min-width: 1024px) 250px, 46vw" width="600" height="1298" alt="Version 3.0 home: the next level shown as a code editor" data-ar-alt="رئيسية النسخة 3.0: المرحلة التالية كمحرّر كود" loading="lazy"></figure><figure class="s3__card"><img src="../img/bug-hunter/paths.jpg" srcset="../img/bug-hunter/paths-340.jpg 340w, ../img/bug-hunter/paths.jpg 600w" sizes="(min-width: 1024px) 250px, 46vw" width="600" height="1298" alt="Paths: the languages listed like a file explorer" data-ar-alt="المسارات: اللغات كمستكشف ملفات" loading="lazy"></figure><figure class="s3__card"><img src="../img/bug-hunter/game.jpg" srcset="../img/bug-hunter/game-340.jpg 340w, ../img/bug-hunter/game.jpg 600w" sizes="(min-width: 1024px) 250px, 46vw" width="600" height="1298" alt="The game screen: the bug line underlined in red" data-ar-alt="شاشة اللعب: سطر الخطأ وتحته خط أحمر" loading="lazy"></figure><figure class="s3__card"><img src="../img/bug-hunter/result.jpg" srcset="../img/bug-hunter/result-340.jpg 340w, ../img/bug-hunter/result.jpg 600w" sizes="(min-width: 1024px) 250px, 46vw" width="600" height="1298" alt="Result: build passed, with the diff of the fix" data-ar-alt="النتيجة: نجح البناء مع الفرق بين السطرين" loading="lazy"></figure><figure class="s3__card"><img src="../img/bug-hunter/daily-bug.jpg" srcset="../img/bug-hunter/daily-bug-340.jpg 340w, ../img/bug-hunter/daily-bug.jpg 600w" sizes="(min-width: 1024px) 250px, 46vw" width="600" height="1298" alt="The daily bug with a contribution graph" data-ar-alt="خطأ اليوم مع مخطط المساهمات" loading="lazy"></figure><figure class="s3__card"><img src="../img/bug-hunter/season.jpg" srcset="../img/bug-hunter/season-340.jpg 340w, ../img/bug-hunter/season.jpg 600w" sizes="(min-width: 1024px) 250px, 46vw" width="600" height="1298" alt="The season as a list of passed and failed tests" data-ar-alt="الموسم كقائمة اختبارات ناجحة وفاشلة" loading="lazy"></figure></div>
+            <p class="s3__count" aria-hidden="true"><b>01</b> / 07</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="section" id="screens" aria-labelledby="screens-h" style="height: auto">
-    <div class="wrap">
-      <div class="section-head"><h2 id="screens-h" data-ar="شاشات الجوال في النسخة 3.0">Version 3.0 phone screens</h2><p data-ar="كل شاشة مبنية من المكوّنات العشرة نفسها: سطر الكود والتبويب واللوحة والوسم وغيرها.">Every screen is built from the same 10 components: the code line, the tab, the panel, the tag and the rest.</p></div>
-      <ul class="shots" data-reveal="stagger"><li><img src="../img/bug-hunter/home.jpg" srcset="../img/bug-hunter/home-340.jpg 340w, ../img/bug-hunter/home.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="Home: the next level opened like a code editor" data-ar-alt="الرئيسية: المرحلة التالية مفتوحة كمحرّر كود" loading="lazy"></li><li><img src="../img/bug-hunter/paths.jpg" srcset="../img/bug-hunter/paths-340.jpg 340w, ../img/bug-hunter/paths.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="Paths: languages listed like a file explorer" data-ar-alt="المسارات: اللغات كمستكشف ملفات" loading="lazy"></li><li><img src="../img/bug-hunter/game.jpg" srcset="../img/bug-hunter/game-340.jpg 340w, ../img/bug-hunter/game.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="The game: the bug line underlined in red" data-ar-alt="اللعب: سطر الخطأ وتحته خط أحمر" loading="lazy"></li><li><img src="../img/bug-hunter/result.jpg" srcset="../img/bug-hunter/result-340.jpg 340w, ../img/bug-hunter/result.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="Result: build passed, with the diff of the fix" data-ar-alt="النتيجة: نجح البناء مع الفرق بين السطرين" loading="lazy"></li><li><img src="../img/bug-hunter/daily-bug.jpg" srcset="../img/bug-hunter/daily-bug-340.jpg 340w, ../img/bug-hunter/daily-bug.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="The daily bug with a contribution graph" data-ar-alt="خطأ اليوم مع مخطط المساهمات" loading="lazy"></li><li><img src="../img/bug-hunter/season.jpg" srcset="../img/bug-hunter/season-340.jpg 340w, ../img/bug-hunter/season.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="The season as a list of passed and failed tests" data-ar-alt="الموسم كقائمة اختبارات ناجحة وفاشلة" loading="lazy"></li><li><img src="../img/bug-hunter/boss-fight.jpg" srcset="../img/bug-hunter/boss-fight-340.jpg 340w, ../img/bug-hunter/boss-fight.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="A boss fight against a timer" data-ar-alt="مواجهة الزعيم مع مؤقّت" loading="lazy"></li><li><img src="../img/bug-hunter/store.jpg" srcset="../img/bug-hunter/store-340.jpg 340w, ../img/bug-hunter/store.jpg 600w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="600" height="1298" alt="The points store with the Pro subscription" data-ar-alt="متجر النقاط مع اشتراك Pro" loading="lazy"></li></ul>
     </div>
   </section>
   <section class="section" id="tablet" aria-labelledby="tablet-h" style="height: auto">
     <div class="wrap">
       <div class="section-head"><h2 id="tablet-h" data-ar="التابلت والهوية">Tablet and brand</h2><p data-ar="في التابلت يظهر الكود والمهمة جنباً إلى جنب. والشعار قوسا كود يحتضنان حشرة.">The tablet splits the code and the task side by side. The logo is two code braces holding a bug.</p></div>
       <div class="wide" data-reveal="stagger"><img src="../img/bug-hunter/t2.jpg" srcset="../img/bug-hunter/t2-800.jpg 800w, ../img/bug-hunter/t2.jpg 1200w" sizes="(min-width: 1024px) 45vw, 92vw" width="1200" height="1727" alt="The game on an iPad: code on one side, the task on the other" data-ar-alt="اللعب على الآيباد: الكود في جهة والمهمة في الأخرى" loading="lazy"><img src="../img/bug-hunter/logo.jpg" srcset="../img/bug-hunter/logo-800.jpg 800w, ../img/bug-hunter/logo.jpg 800w" sizes="(min-width: 1024px) 45vw, 92vw" width="800" height="800" alt="The Bug Hunter logo: braces around a bug on amber" data-ar-alt="شعار Bug Hunter: قوسان حول حشرة على الكهرماني" loading="lazy"></div>
-    </div>
-  </section>
-  <section class="section" id="before" aria-labelledby="before-h" style="height: auto">
-    <div class="wrap">
-      <div class="section-head"><h2 id="before-h" data-ar="قبل: النسخة 2.0">Before: version 2.0</h2><p data-ar="الشكل الذي شكّك فيه اللاعبون: تدرّجات وتوهّج وإيموجي. اللعبة والمحتوى نفسهما.">The look players doubted: neon gradients, glow and emoji. Same game, same content.</p></div>
-      <ul class="shots" data-reveal="stagger"><li><img src="../img/bug-hunter/v2-home.jpg" srcset="../img/bug-hunter/v2-home-340.jpg 340w, ../img/bug-hunter/v2-home.jpg 390w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="390" height="844" alt="Version 2.0 home screen" data-ar-alt="الرئيسية في النسخة 2.0" loading="lazy"></li><li><img src="../img/bug-hunter/v2-paths.jpg" srcset="../img/bug-hunter/v2-paths-340.jpg 340w, ../img/bug-hunter/v2-paths.jpg 390w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="390" height="844" alt="Version 2.0 paths" data-ar-alt="المسارات في النسخة 2.0" loading="lazy"></li><li><img src="../img/bug-hunter/v2-level.jpg" srcset="../img/bug-hunter/v2-level-340.jpg 340w, ../img/bug-hunter/v2-level.jpg 390w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="390" height="844" alt="Version 2.0 level" data-ar-alt="المرحلة في النسخة 2.0" loading="lazy"></li><li><img src="../img/bug-hunter/v2-store.jpg" srcset="../img/bug-hunter/v2-store-340.jpg 340w, ../img/bug-hunter/v2-store.jpg 390w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="390" height="844" alt="Version 2.0 store" data-ar-alt="المتجر في النسخة 2.0" loading="lazy"></li></ul>
     </div>
   </section>
   <section class="section" aria-label="Next project" data-ar-aria="المشروع التالي" style="height: auto; padding-top: 0">
@@ -156,6 +150,7 @@
   </div>
 </footer>
 <script type="module" src="../site.js"></script>
+<script type="module" src="../story3d.js"></script>
 <script type="module" src="../assets/system.js"></script>
 <script type="module" src="../assets/motion/motion.js"></script>
 <script type="module" src="../assets/layout/layout.js"></script>

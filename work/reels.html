@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-type="service" data-radius="soft" data-buttons="tonal" data-motion>
+<html lang="en" data-type="service" data-radius="soft" data-buttons="pill" data-motion style="--pc: #8b6cff">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -11,7 +11,7 @@
 <meta property="og:image" content="../img/cover-reels.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#f5f2ea">
+<meta name="theme-color" content="#0d0e10">
 <meta name="site-kind" content="other">
 <meta name="page-type" content="service">
 <script>
@@ -20,7 +20,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@400&family=Work+Sans:wght@400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Serif:ital@1&family=Work+Sans:wght@400..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/system.css">
 <link rel="stylesheet" href="../assets/ui/cards.css">
 <link rel="stylesheet" href="../assets/motion/motion.css">
@@ -28,16 +28,17 @@
 <link rel="stylesheet" href="../assets/icons/icon.css">
 <style>
 :root {
-  --p-bg: #f5f2ea; --p-surface: #ebe6da; --p-ink: #16181b; --p-muted: #5f5b53;
-  --p-accent: #f2a93b; --p-accent-ink: #111111; --p-action: #f2a93b; --p-action-ink: #111111;
-  --p-inv-bg: #16181b; --p-inv-surface: #232427; --p-inv-ink: #f5f2ea; --p-inv-muted: #979794;
-  --p-inv-accent: #f2a93b; --p-inv-accent-ink: #111111; --p-inv-action: #f2a93b; --p-inv-action-ink: #111111;
-  --font-display: "Vollkorn", Georgia, serif;
+  --p-bg: #0d0e10; --p-surface: #16181b; --p-ink: #f2efe8; --p-muted: #9a968d;
+  --p-accent: #8b6cff; --p-accent-ink: #111111; --p-action: #8b6cff; --p-action-ink: #111111;
+  --p-inv-bg: #16181b; --p-inv-surface: #1d2024; --p-inv-ink: #f2efe8; --p-inv-muted: #9a968d;
+  --p-inv-accent: #8b6cff; --p-inv-accent-ink: #111111; --p-inv-action: #8b6cff; --p-inv-action-ink: #111111;
+  --font-display: "Bricolage Grotesque", "Work Sans", system-ui, sans-serif;
   --font-text: "Work Sans", system-ui, sans-serif;
-  --display-weight: 400; --display-tracking: -0.015em; --display-tracking-xl: -0.02em; --ly-scale: 1.04;
+  --display-weight: 700; --display-tracking: -0.035em; --display-tracking-xl: -0.045em; --ly-scale: 1.04;
 }
 </style>
 <link rel="stylesheet" href="../site.css">
+<link rel="stylesheet" href="../story3d.css">
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
 <body>
@@ -64,10 +65,10 @@
     <div class="wrap">
       <div class="hero-text grid hero-split">
         <div class="hero-copy span-6">
-          <p class="hero-notice" data-ar="مشروع فردي · موشن وتواصل اجتماعي · 2026">Solo project · Motion and social · 2026</p>
           <h1 id="hero-h" data-ar="فيديوهات قصيرة لطلاب البرمجة">Reels for programming students</h1>
           <p class="t-lead" data-ar="فيديوهات قصيرة لصفحة Bug Hunter على إنستغرام، مصنوعة بالكود عبر Remotion: فكرة واحدة في كل مشهد، وترجمة كلمة بكلمة، وتعليق صوتي بالعربية. فيديو «C++ بدقيقة» وصل إلى 112,700 مشاهدة.">Short videos for the Bug Hunter Instagram page, made in code with Remotion: one idea per scene, captions word by word, Arabic voice-over. "C++ in a minute" reached 112,700 views.</p>
           <dl class="facts"><div><dt data-ar="دوري">My role</dt><dd data-ar="الفكرة والنص والحركة والنشر">Idea, script, motion, posting</dd></div><div><dt data-ar="السنة">Year</dt><dd data-ar="2026">2026</dd></div><div><dt data-ar="الفيديوهات">Videos</dt><dd data-ar="أكثر من 20 فيديو منشور">More than 20 published</dd></div></dl>
+          <ul class="tools"><li><img src="../assets/icons/react.svg" alt="" width="40" height="36" loading="lazy">React and Remotion</li><li><img src="../assets/icons/claude.svg" alt="" width="40" height="40" loading="lazy">Claude</li></ul>
         </div>
         <div class="hero-visual frame frame--photo span-6 start-7">
           <img class="frame__img" src="../img/cover-reels.jpg" srcset="../img/cover-reels-800.jpg 800w, ../img/cover-reels.jpg 1600w" sizes="(min-width: 1024px) 45vw, 92vw" width="1600" height="1200" alt="Frames from the C++ in a minute reel and a bug-fix reel" data-ar-alt="لقطات من فيديو C++ بدقيقة وفيديو تصحيح خطأ" style="view-transition-name: p-reels" fetchpriority="high">
@@ -75,17 +76,22 @@
       </div>
     </div>
   </section>
-  <section class="section" id="story" aria-labelledby="story-h" style="height: auto">
-    <div class="wrap">
-      <div class="grid grid--top">
-        <div class="span-5">
-          <h2 id="story-h" data-ar="المشكلة والحل">The problem and the fix</h2>
-          <div class="story" data-reveal="stagger"><div><h3 data-ar="المشكلة">The problem</h3><p data-ar="صفحة جديدة بلا ميزانية. أول فيديوهات الأسئلة وصلت إلى 250 حتى 600 شخص، ولم تجلب متابعين تقريباً.">A new page with no budget. My first quiz reels reached 250 to 600 people and brought almost no followers.</p></div><div><h3 data-ar="الحل">The fix</h3><p data-ar="كنت أقرأ الأرقام بعد كل منشور. الفيديوهات التي يحفظها الطلاب قبل الامتحان انتشرت، والتعريفات لم تنتشر. فصار كل فيديو ملخصاً سريعاً أو فخاً يُظهر نتيجة غير متوقعة.">I read the numbers after each post. Videos that students save before an exam spread; definitions did not. So every reel became a fast summary or a trap that shows a surprising output.</p></div><div><h3 data-ar="النتيجة">What came out</h3><p data-ar="فيديو «C++ بدقيقة» وصل إلى 112,700 مشاهدة و3,616 حفظ و2,557 مشاركة، وكبرت الصفحة من 564 إلى 1,873 متابعاً خلال يوم ونصف.">"C++ in a minute" reached 112,700 views, 3,616 saves and 2,557 shares, and the page grew from 564 to 1,873 followers in a day and a half.</p></div></div>
-          <h3 class="t-label" style="margin-top: var(--s-7); color: var(--muted)" data-ar="الأدوات">Tools</h3>
-          <ul class="tools"><li><img src="../assets/icons/react.svg" alt="" width="40" height="36" loading="lazy">React and Remotion</li><li><img src="../assets/icons/claude.svg" alt="" width="40" height="40" loading="lazy">Claude</li></ul>
-        </div>
-        <div class="frame frame--photo span-6 start-7" style="aspect-ratio: 4 / 5; max-height: 708px" data-reveal-img>
-          <img class="frame__img" src="../img/reels/r1_2.jpg" width="540" height="960" alt="The opening frame of C++ in a minute: the glowing C++ letters over a grid floor" data-ar-alt="اللقطة الأولى من فيديو C++ بدقيقة: حروف C++ المضيئة فوق أرضية شبكية" loading="lazy" style="object-position: 50% 50%">
+  <section class="s3" data-story aria-labelledby="s3-h">
+    <div class="s3__pin">
+      <div class="wrap">
+        <h2 id="s3-h" class="sr-only" data-ar="الفيديوهات، واحداً واحداً">The reels, one by one</h2>
+        <div class="s3__grid">
+          <div class="s3__editor">
+            <div class="s3__tabs"><span class="dot" aria-hidden="true"></span><b>reels.case</b><span>· 5 steps</span></div>
+            <p class="s3__cmd" aria-hidden="true"><span class="p">$</span> <span data-type>open reels --case-study</span><span class="caret"></span></p>
+            <div class="s3__steps"><div class="s3__step"><span class="s3__ln">01</span><div><span class="c" data-ar="// فيديوهات الأسئلة">// quiz reels</span><h3 data-ar="الأسئلة وصلت لعدد قليل">Quizzes reached few people</h3><p data-ar="أول فيديوهات الأسئلة وصلت إلى 250 حتى 600 شخص، وتقريباً لم يتابع أحد. احتاجت الصفحة شكلاً يحتفظ به الطلاب.">The first quiz reels reached 250 to 600 people and almost nobody followed. The page needed a format students keep.</p></div></div><div class="s3__step"><span class="s3__ln">04</span><div><span class="c" data-ar="// أخطاء الامتحان">// exam bugs</span><h3 data-ar="أخطاء تكلّف علامات بالامتحان">Bugs that cost exam marks</h3><p data-ar="ثلاثة أخطاء شائعة مع السطر الأحمر وتصحيحه. حفظه الطلاب ليراجعوه لاحقاً.">Three common bugs with the red line and its fix. Students saved it to revise later.</p></div></div><div class="s3__step"><span class="s3__ln">07</span><div><span class="c" data-ar="// الملخص">// cheat sheet</span><h3 data-ar="ملخص انتشر">A cheat sheet took off</h3><p data-ar="&lt;b&gt;40,100 مشاهدة و1,170 حفظ&lt;/b&gt;: ست قواعد في C++ خلال 30 ثانية، قبل الامتحانات مباشرة."><b>40,100 views and 1,170 saves</b>: six rules of C++ in 30 seconds, right before exams.</p></div></div><div class="s3__step"><span class="s3__ln">10</span><div><span class="c" data-ar="// C++ بدقيقة">// c++ in a minute</span><h3 data-ar="افتتاحية واحدة ومشاهد سريعة">One hook, fast scenes</h3><p data-ar="صورة متحركة لكل فكرة وترجمة كلمة بكلمة. &lt;b&gt;112,700 مشاهدة و3,616 حفظ.&lt;/b&gt;">An animated picture for each idea and captions word by word. <b>112,700 views and 3,616 saves.</b></p></div></div><div class="s3__step"><span class="s3__ln">13</span><div><span class="c" data-ar="// صوتان">// two voices</span><h3 data-ar="صوتان، أحدهما للكود">Two voices, one for code</h3><p data-ar="النسخة الأولى نطقت كلمات الكود بشكل سيئ. الحل: صوت عربي للفكرة، وصوت إنجليزي لكل كلمة كود.">The first cut read code words badly. The fix: Arabic voice for the idea, an English voice for each code word.</p></div></div></div>
+            <ol class="s3__stack" aria-label="Steps" data-ar-aria="الخطوات"><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="فيديوهات الأسئلة">quiz reels</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="أخطاء الامتحان">exam bugs</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="الملخص">cheat sheet</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="C++ بدقيقة">c++ in a minute</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="صوتان">two voices</span></button></li></ol>
+            <div class="s3__bar" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="s3__stage">
+            <div class="s3__ring"><figure class="s3__card"><img src="../img/reels/r3_2.jpg" srcset="../img/reels/r3_2-340.jpg 340w, ../img/reels/r3_2.jpg 540w" sizes="(min-width: 1024px) 250px, 46vw" width="540" height="960" alt="The i++ vs ++i quiz reel" data-ar-alt="فيديو سؤال i++ أم ++i" loading="lazy"></figure><figure class="s3__card"><img src="../img/reels/r4_20.jpg" srcset="../img/reels/r4_20-340.jpg 340w, ../img/reels/r4_20.jpg 540w" sizes="(min-width: 1024px) 250px, 46vw" width="540" height="960" alt="A bug and its fix in the exam reel" data-ar-alt="خطأ وتصحيحه في فيديو الامتحان" loading="lazy"></figure><figure class="s3__card"><img src="../img/reels/r2_2.jpg" srcset="../img/reels/r2_2-340.jpg 340w, ../img/reels/r2_2.jpg 540w" sizes="(min-width: 1024px) 250px, 46vw" width="540" height="960" alt="The C++ cheat sheet reel" data-ar-alt="فيديو ملخص C++" loading="lazy"></figure><figure class="s3__card"><img src="../img/reels/r1_2.jpg" srcset="../img/reels/r1_2-340.jpg 340w, ../img/reels/r1_2.jpg 540w" sizes="(min-width: 1024px) 250px, 46vw" width="540" height="960" alt="The opening of C++ in a minute" data-ar-alt="افتتاحية فيديو C++ بدقيقة" loading="lazy"></figure><figure class="s3__card"><img src="../img/reels/r1_8.jpg" srcset="../img/reels/r1_8-340.jpg 340w, ../img/reels/r1_8.jpg 540w" sizes="(min-width: 1024px) 250px, 46vw" width="540" height="960" alt="A scene about cout and cin" data-ar-alt="مشهد عن cout و cin" loading="lazy"></figure></div>
+            <p class="s3__count" aria-hidden="true"><b>01</b> / 05</p>
+          </div>
         </div>
       </div>
     </div>
@@ -150,6 +156,7 @@
   </div>
 </footer>
 <script type="module" src="../site.js"></script>
+<script type="module" src="../story3d.js"></script>
 <script type="module" src="../assets/system.js"></script>
 <script type="module" src="../assets/motion/motion.js"></script>
 <script type="module" src="../assets/layout/layout.js"></script>

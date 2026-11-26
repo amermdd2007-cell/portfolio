@@ -136,3 +136,19 @@ html.i18n-wait body { visibility: hidden; }
 /* audit fixes: no glow behind the step pictures; list rows breathe above their rule */
 #process .panel::before { display: none; }
 #services .rows li { padding-block: var(--s-3) var(--s-4); }
+
+/* ---- dark project pages (2.0): the project's colour glows behind the hero */
+.hero.hero--split { position: relative; isolation: isolate; overflow: hidden; }
+.hero.hero--split::before { content: ""; position: absolute; z-index: -1; width: 70vw; height: 70vw; right: -18vw; top: -26vw; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--pc, #f2a93b) 30%, transparent), transparent); animation: pdrift 18s cubic-bezier(.77,0,.175,1) infinite alternate; }
+html[dir="rtl"] .hero.hero--split::before { right: auto; left: -18vw; }
+@keyframes pdrift { to { transform: translate3d(-5vw, 4vw, 0) scale(1.1); } }
+@media (prefers-reduced-motion: reduce) { .hero.hero--split::before { animation: none; } }
+.hero h1 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.04em; }
+html[lang="ar"] .hero h1 { letter-spacing: 0; }
+.hero-notice::before { background: var(--pc, #f2a93b); }
+.btn.btn--primary { color: #111; }
+
+/* reels: a whole film fits the screen height */
+.films { justify-content: center; grid-template-columns: repeat(3, minmax(0, calc(min(70svh, 640px) * 9 / 16))); }
+@media (max-width: 767px) { .films { grid-template-columns: minmax(0, min(100%, calc(70svh * 9 / 16))); margin-inline: auto; } }

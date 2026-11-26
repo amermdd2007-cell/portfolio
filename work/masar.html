@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-type="service" data-radius="soft" data-buttons="tonal" data-motion>
+<html lang="en" data-type="service" data-radius="soft" data-buttons="pill" data-motion style="--pc: #44bfb7">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -11,7 +11,7 @@
 <meta property="og:image" content="../img/cover-masar.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#f5f2ea">
+<meta name="theme-color" content="#0d0e10">
 <meta name="site-kind" content="other">
 <meta name="page-type" content="service">
 <script>
@@ -20,7 +20,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@400&family=Work+Sans:wght@400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Serif:ital@1&family=Work+Sans:wght@400..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/system.css">
 <link rel="stylesheet" href="../assets/ui/cards.css">
 <link rel="stylesheet" href="../assets/motion/motion.css">
@@ -28,16 +28,17 @@
 <link rel="stylesheet" href="../assets/icons/icon.css">
 <style>
 :root {
-  --p-bg: #f5f2ea; --p-surface: #ebe6da; --p-ink: #16181b; --p-muted: #5f5b53;
-  --p-accent: #f2a93b; --p-accent-ink: #111111; --p-action: #f2a93b; --p-action-ink: #111111;
-  --p-inv-bg: #16181b; --p-inv-surface: #232427; --p-inv-ink: #f5f2ea; --p-inv-muted: #979794;
-  --p-inv-accent: #f2a93b; --p-inv-accent-ink: #111111; --p-inv-action: #f2a93b; --p-inv-action-ink: #111111;
-  --font-display: "Vollkorn", Georgia, serif;
+  --p-bg: #0d0e10; --p-surface: #16181b; --p-ink: #f2efe8; --p-muted: #9a968d;
+  --p-accent: #44bfb7; --p-accent-ink: #111111; --p-action: #44bfb7; --p-action-ink: #111111;
+  --p-inv-bg: #16181b; --p-inv-surface: #1d2024; --p-inv-ink: #f2efe8; --p-inv-muted: #9a968d;
+  --p-inv-accent: #44bfb7; --p-inv-accent-ink: #111111; --p-inv-action: #44bfb7; --p-inv-action-ink: #111111;
+  --font-display: "Bricolage Grotesque", "Work Sans", system-ui, sans-serif;
   --font-text: "Work Sans", system-ui, sans-serif;
-  --display-weight: 400; --display-tracking: -0.015em; --display-tracking-xl: -0.02em; --ly-scale: 1.04;
+  --display-weight: 700; --display-tracking: -0.035em; --display-tracking-xl: -0.045em; --ly-scale: 1.04;
 }
 </style>
 <link rel="stylesheet" href="../site.css">
+<link rel="stylesheet" href="../story3d.css">
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
 <body>
@@ -64,10 +65,10 @@
     <div class="wrap">
       <div class="hero-text grid hero-split">
         <div class="hero-copy span-6">
-          <p class="hero-notice" data-ar="فريق من 3 · هاكاثون · 2026">Team of 3 · Hackathon · 2026</p>
           <h1 id="hero-h" data-ar="مسار، تطبيق مذاكرة لامتحانات الجامعة">Masar, a study app for university exams</h1>
           <p class="t-lead" data-ar="بنيته مع زميلين في هاكاثون JORDAN.NEXT() ضمن مسار التعليم. اختبار قصير يرسم ما يعرفه الطالب، وخطة يومية تركّز على المواضيع الأكثر تكراراً في امتحانات سابقة حقيقية.">Built with two teammates for the JORDAN.NEXT() hackathon, Education track. A short test maps what a student knows, and a daily plan targets the topics that appear most in real past exams.</p>
           <dl class="facts"><div><dt data-ar="دوري">My part</dt><dd data-ar="الألوان والوضع الداكن وشاشتا المرشد والملف الشخصي">Colours, dark mode, mentor and profile screens</dd></div><div><dt data-ar="السنة">Year</dt><dd data-ar="2026">2026</dd></div><div><dt data-ar="الفريق">Team</dt><dd data-ar="ثلاثة طلاب">Three students</dd></div></dl>
+          <ul class="tools"><li><img src="../assets/icons/flutter.svg" alt="" width="33" height="40" loading="lazy">Flutter</li><li><img src="../assets/icons/figma.svg" alt="" width="27" height="40" loading="lazy">Figma</li><li><img src="../assets/icons/claude.svg" alt="" width="40" height="40" loading="lazy">Claude</li></ul>
         </div>
         <div class="hero-visual frame frame--photo span-6 start-7">
           <img class="frame__img" src="../img/cover-masar.jpg" srcset="../img/cover-masar-800.jpg 800w, ../img/cover-masar.jpg 1600w" sizes="(min-width: 1024px) 45vw, 92vw" width="1600" height="1200" alt="Masar home, mentor and profile screens" data-ar-alt="شاشات الرئيسية والمرشد والملف الشخصي في مسار" style="view-transition-name: p-masar" fetchpriority="high">
@@ -75,31 +76,24 @@
       </div>
     </div>
   </section>
-  <section class="section" id="story" aria-labelledby="story-h" style="height: auto">
-    <div class="wrap">
-      <div class="grid grid--top">
-        <div class="span-5">
-          <h2 id="story-h" data-ar="المشكلة ودوري">The problem and my part</h2>
-          <div class="story" data-reveal="stagger"><div><h3 data-ar="المشكلة">The problem</h3><p data-ar="يراجع الطلاب كل شيء بالطريقة نفسها، دون أن يعرفوا أي المواضيع يسأل عنها امتحانهم فعلاً.">Students revise everything the same way, without knowing which topics their exam really asks about.</p></div><div><h3 data-ar="حل الفريق">The team’s answer</h3><p data-ar="نسبة جاهزية لكل موضوع، وخطة يومية مبنية على امتحانات سابقة حقيقية، ورفيق: مرشد يشرح المفهوم بعد خطأين.">A readiness score per topic, a daily plan weighted by real past papers, and Rafeeq, a mentor who explains a concept after two wrong answers.</p></div><div><h3 data-ar="ما صمّمته">What I made</h3><p data-ar="نظام الألوان، الكحلي ‎#24477B والتركوازي ‎#44BFB7، مع وضع داكن كامل؛ وشاشة ترحيب رفيق مع أربعة أسئلة مقترحة؛ والملف الشخصي بالإحصائيات والإتقان وإعداد المظهر.">The colour system, navy #24477B and teal #44BFB7, with a full dark mode; Rafeeq’s welcome screen with four suggested questions; and the profile with stats, mastery and the appearance setting.</p></div></div>
-          <h3 class="t-label" style="margin-top: var(--s-7); color: var(--muted)" data-ar="الأدوات">Tools</h3>
-          <ul class="tools"><li><img src="../assets/icons/flutter.svg" alt="" width="33" height="40" loading="lazy">Flutter</li><li><img src="../assets/icons/figma.svg" alt="" width="27" height="40" loading="lazy">Figma</li><li><img src="../assets/icons/claude.svg" alt="" width="40" height="40" loading="lazy">Claude</li></ul>
-        </div>
-        <div class="frame frame--photo span-6 start-7" style="aspect-ratio: 4 / 5; max-height: 708px" data-reveal-img>
-          <img class="frame__img" src="../img/masar/08.jpg" width="488" height="1055" alt="Rafeeq’s welcome screen in dark mode" data-ar-alt="شاشة ترحيب رفيق في الوضع الداكن" loading="lazy" style="object-position: 50% 0%">
+  <section class="s3" data-story aria-labelledby="s3-h">
+    <div class="s3__pin">
+      <div class="wrap">
+        <h2 id="s3-h" class="sr-only" data-ar="مسار، شاشة شاشة">Masar, screen by screen</h2>
+        <div class="s3__grid">
+          <div class="s3__editor">
+            <div class="s3__tabs"><span class="dot" aria-hidden="true"></span><b>masar.case</b><span>· 7 steps</span></div>
+            <p class="s3__cmd" aria-hidden="true"><span class="p">$</span> <span data-type>open masar --case-study</span><span class="caret"></span></p>
+            <div class="s3__steps"><div class="s3__step"><span class="s3__ln">01</span><div><span class="c" data-ar="// البداية">// onboarding</span><h3 data-ar="ثلاثة أسئلة للبداية">Three questions to start</h3><p data-ar="الاسم والمادة وموعد الامتحان. ثم ثمانية أسئلة قصيرة تحدد أين يقف الطالب.">Name, subject and exam date. Then eight short questions find where the student stands.</p></div></div><div class="s3__step"><span class="s3__ln">04</span><div><span class="c" data-ar="// التشخيص">// diagnostic</span><h3 data-ar="تصحيح فوري لكل إجابة">Feedback on every answer</h3><p data-ar="الخطأ بالأحمر والصح بالأخضر، ونسبة الجاهزية تتحرك فوراً: &lt;b&gt;+4%&lt;/b&gt;.">Wrong in red, right in green, and the readiness score moves at once: <b>+4%</b>.</p></div></div><div class="s3__step"><span class="s3__ln">07</span><div><span class="c" data-ar="// الخريطة">// map</span><h3 data-ar="مواضيع مرتّبة حسب الامتحانات الحقيقية">Topics weighted by real exams</h3><p data-ar="كل موضوع يُظهر كم يتكرر في الامتحانات السابقة، فتأتي المواضيع الضعيفة والمتكررة أولاً.">Each topic shows how often it appears in past papers, so the weak and frequent ones come first.</p></div></div><div class="s3__step"><span class="s3__ln">10</span><div><span class="c" data-ar="// الرئيسية">// home</span><h3 data-ar="خطة لليوم">A plan for today</h3><p data-ar="16 دقيقة و12 سؤالاً، على المواضيع الثلاثة الأهم قبل الامتحان.">16 minutes, 12 questions, on the three topics that matter most before the exam.</p></div></div><div class="s3__step"><span class="s3__ln">13</span><div><span class="c" data-ar="// رفيق · من تصميمي">// rafeeq · my screen</span><h3 data-ar="رفيق يرحّب">Rafeeq says hello</h3><p data-ar="صمّمت ترحيب المرشد: صورة كبيرة فوق توهّج تركوازي و&lt;b&gt;أربعة أسئلة مقترحة&lt;/b&gt; لبدء المحادثة.">I designed the mentor’s welcome: a big avatar over a teal glow and <b>four suggested questions</b> to start a chat.</p></div></div><div class="s3__step"><span class="s3__ln">16</span><div><span class="c" data-ar="// الملف · من تصميمي">// profile · my screen</span><h3 data-ar="الملف الشخصي بالأرقام">The profile in numbers</h3><p data-ar="الجاهزية والمواضيع القوية والإجابات حتى الآن والأيام حتى الامتحان، مع شريط إتقان من الضعيف للقوي.">Readiness, strong topics, answers so far and days to the exam, with a mastery bar from weak to strong.</p></div></div><div class="s3__step"><span class="s3__ln">19</span><div><span class="c" data-ar="// الألوان · من تصميمي">// colours · my system</span><h3 data-ar="داكن وفاتح بنظام واحد">Dark and light, one system</h3><p data-ar="كحلي &lt;b&gt;#24477B&lt;/b&gt; وتركوازي &lt;b&gt;#44BFB7&lt;/b&gt;، مع وضع داكن كامل يبدّل كل الشاشات مرة واحدة.">Navy <b>#24477B</b> and teal <b>#44BFB7</b>, with a full dark mode that switches every screen at once.</p></div></div></div>
+            <ol class="s3__stack" aria-label="Steps" data-ar-aria="الخطوات"><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="البداية">onboarding</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="التشخيص">diagnostic</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="الخريطة">map</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="الرئيسية">home</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="رفيق · من تصميمي">rafeeq · my screen</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="الملف · من تصميمي">profile · my screen</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="الألوان · من تصميمي">colours · my system</span></button></li></ol>
+            <div class="s3__bar" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="s3__stage">
+            <div class="s3__ring"><figure class="s3__card"><img src="../img/masar/02.jpg" srcset="../img/masar/02-340.jpg 340w, ../img/masar/02.jpg 488w" sizes="(min-width: 1024px) 250px, 46vw" width="488" height="1055" alt="Onboarding: name, subject and exam date" data-ar-alt="البداية: الاسم والمادة وموعد الامتحان" loading="lazy"></figure><figure class="s3__card"><img src="../img/masar/04.jpg" srcset="../img/masar/04-340.jpg 340w, ../img/masar/04.jpg 488w" sizes="(min-width: 1024px) 250px, 46vw" width="488" height="1055" alt="The diagnostic with instant feedback" data-ar-alt="التشخيص مع تصحيح فوري" loading="lazy"></figure><figure class="s3__card"><img src="../img/masar/05.jpg" srcset="../img/masar/05-340.jpg 340w, ../img/masar/05.jpg 488w" sizes="(min-width: 1024px) 250px, 46vw" width="488" height="1055" alt="The concept map with readiness per topic" data-ar-alt="خريطة المفاهيم مع الجاهزية لكل موضوع" loading="lazy"></figure><figure class="s3__card"><img src="../img/masar/06.jpg" srcset="../img/masar/06-340.jpg 340w, ../img/masar/06.jpg 488w" sizes="(min-width: 1024px) 250px, 46vw" width="488" height="1055" alt="Home: today’s plan" data-ar-alt="الرئيسية: خطة اليوم" loading="lazy"></figure><figure class="s3__card"><img src="../img/masar/08.jpg" srcset="../img/masar/08-340.jpg 340w, ../img/masar/08.jpg 488w" sizes="(min-width: 1024px) 250px, 46vw" width="488" height="1055" alt="Rafeeq welcome, dark" data-ar-alt="ترحيب رفيق، داكن" loading="lazy"></figure><figure class="s3__card"><img src="../img/masar/10.jpg" srcset="../img/masar/10-340.jpg 340w, ../img/masar/10.jpg 488w" sizes="(min-width: 1024px) 250px, 46vw" width="488" height="1055" alt="Profile stats, dark" data-ar-alt="إحصائيات الملف، داكن" loading="lazy"></figure><figure class="s3__card"><img src="../img/masar/12.jpg" srcset="../img/masar/12-340.jpg 340w, ../img/masar/12.jpg 488w" sizes="(min-width: 1024px) 250px, 46vw" width="488" height="1055" alt="Profile, light" data-ar-alt="الملف الشخصي، فاتح" loading="lazy"></figure></div>
+            <p class="s3__count" aria-hidden="true"><b>01</b> / 07</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="section" id="mine" aria-labelledby="mine-h" style="height: auto">
-    <div class="wrap">
-      <div class="section-head"><h2 id="mine-h" data-ar="الشاشات التي صمّمتها">The screens I designed</h2><p data-ar="رفيق والملف الشخصي، بالداكن والفاتح.">Rafeeq and the profile, in dark and light.</p></div>
-      <ul class="shots" data-reveal="stagger"><li><img src="../img/masar/08.jpg" srcset="../img/masar/08-340.jpg 340w, ../img/masar/08.jpg 488w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="488" height="1055" alt="Rafeeq welcome, dark" data-ar-alt="ترحيب رفيق، داكن" loading="lazy"></li><li><img src="../img/masar/09.jpg" srcset="../img/masar/09-340.jpg 340w, ../img/masar/09.jpg 488w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="488" height="1055" alt="Rafeeq welcome, light" data-ar-alt="ترحيب رفيق، فاتح" loading="lazy"></li><li><img src="../img/masar/10.jpg" srcset="../img/masar/10-340.jpg 340w, ../img/masar/10.jpg 488w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="488" height="1055" alt="Profile stats, dark" data-ar-alt="إحصائيات الملف، داكن" loading="lazy"></li><li><img src="../img/masar/12.jpg" srcset="../img/masar/12-340.jpg 340w, ../img/masar/12.jpg 488w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="488" height="1055" alt="Profile, light" data-ar-alt="الملف الشخصي، فاتح" loading="lazy"></li></ul>
-    </div>
-  </section>
-  <section class="section" id="flow" aria-labelledby="flow-h" style="height: auto">
-    <div class="wrap">
-      <div class="section-head"><h2 id="flow-h" data-ar="باقي التطبيق">The rest of the app</h2><p data-ar="بناها الفريق على الألوان نفسها.">Built by the team on the colours above.</p></div>
-      <ul class="shots" data-reveal="stagger"><li><img src="../img/masar/02.jpg" srcset="../img/masar/02-340.jpg 340w, ../img/masar/02.jpg 488w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="488" height="1055" alt="Onboarding: name, subject and exam date" data-ar-alt="البداية: الاسم والمادة وموعد الامتحان" loading="lazy"></li><li><img src="../img/masar/04.jpg" srcset="../img/masar/04-340.jpg 340w, ../img/masar/04.jpg 488w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="488" height="1055" alt="The diagnostic with instant feedback" data-ar-alt="التشخيص مع تصحيح فوري" loading="lazy"></li><li><img src="../img/masar/05.jpg" srcset="../img/masar/05-340.jpg 340w, ../img/masar/05.jpg 488w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="488" height="1055" alt="The concept map with readiness per topic" data-ar-alt="خريطة المفاهيم مع الجاهزية لكل موضوع" loading="lazy"></li><li><img src="../img/masar/06.jpg" srcset="../img/masar/06-340.jpg 340w, ../img/masar/06.jpg 488w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw" width="488" height="1055" alt="Home: today’s plan" data-ar-alt="الرئيسية: خطة اليوم" loading="lazy"></li></ul>
     </div>
   </section>
   <section class="section" aria-label="Next project" data-ar-aria="المشروع التالي" style="height: auto; padding-top: 0">
@@ -150,6 +144,7 @@
   </div>
 </footer>
 <script type="module" src="../site.js"></script>
+<script type="module" src="../story3d.js"></script>
 <script type="module" src="../assets/system.js"></script>
 <script type="module" src="../assets/motion/motion.js"></script>
 <script type="module" src="../assets/layout/layout.js"></script>

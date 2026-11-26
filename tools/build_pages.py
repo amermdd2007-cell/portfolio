@@ -46,7 +46,7 @@ def tools(keys):
 
 
 HEAD = '''<!doctype html>
-<html lang="en" data-type="service" data-radius="soft" data-buttons="tonal" data-motion>
+<html lang="en" data-type="service" data-radius="soft" data-buttons="pill" data-motion style="--pc: {pc}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -58,7 +58,7 @@ HEAD = '''<!doctype html>
 <meta property="og:image" content="../img/{cover}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#f5f2ea">
+<meta name="theme-color" content="#0d0e10">
 <meta name="site-kind" content="other">
 <meta name="page-type" content="service">
 <script>
@@ -67,7 +67,7 @@ HEAD = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@400&family=Work+Sans:wght@400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Serif:ital@1&family=Work+Sans:wght@400..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/system.css">
 <link rel="stylesheet" href="../assets/ui/cards.css">
 <link rel="stylesheet" href="../assets/motion/motion.css">
@@ -75,16 +75,17 @@ HEAD = '''<!doctype html>
 <link rel="stylesheet" href="../assets/icons/icon.css">
 <style>
 :root {{
-  --p-bg: #f5f2ea; --p-surface: #ebe6da; --p-ink: #16181b; --p-muted: #5f5b53;
-  --p-accent: #f2a93b; --p-accent-ink: #111111; --p-action: #f2a93b; --p-action-ink: #111111;
-  --p-inv-bg: #16181b; --p-inv-surface: #232427; --p-inv-ink: #f5f2ea; --p-inv-muted: #979794;
-  --p-inv-accent: #f2a93b; --p-inv-accent-ink: #111111; --p-inv-action: #f2a93b; --p-inv-action-ink: #111111;
-  --font-display: "Vollkorn", Georgia, serif;
+  --p-bg: #0d0e10; --p-surface: #16181b; --p-ink: #f2efe8; --p-muted: #9a968d;
+  --p-accent: {pc}; --p-accent-ink: #111111; --p-action: {pc}; --p-action-ink: #111111;
+  --p-inv-bg: #16181b; --p-inv-surface: #1d2024; --p-inv-ink: #f2efe8; --p-inv-muted: #9a968d;
+  --p-inv-accent: {pc}; --p-inv-accent-ink: #111111; --p-inv-action: {pc}; --p-inv-action-ink: #111111;
+  --font-display: "Bricolage Grotesque", "Work Sans", system-ui, sans-serif;
   --font-text: "Work Sans", system-ui, sans-serif;
-  --display-weight: 400; --display-tracking: -0.015em; --display-tracking-xl: -0.02em; --ly-scale: 1.04;
+  --display-weight: 700; --display-tracking: -0.035em; --display-tracking-xl: -0.045em; --ly-scale: 1.04;
 }}
 </style>
 <link rel="stylesheet" href="../site.css">
+<link rel="stylesheet" href="../story3d.css">
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
 <body>
@@ -152,6 +153,7 @@ FOOT = '''</main>
   </div>
 </footer>
 <script type="module" src="../site.js"></script>
+<script type="module" src="../story3d.js"></script>
 <script type="module" src="../assets/system.js"></script>
 <script type="module" src="../assets/motion/motion.js"></script>
 <script type="module" src="../assets/layout/layout.js"></script>
@@ -168,10 +170,10 @@ def hero(p):
     <div class="wrap">
       <div class="hero-text grid hero-split">
         <div class="hero-copy span-6">
-          <p class="hero-notice" data-ar="{a(p['tag_ar'])}">{p['tag']}</p>
           <h1 id="hero-h" data-ar="{a(p['h1_ar'])}">{p['h1']}</h1>
           <p class="t-lead" data-ar="{a(p['lead_ar'])}">{p['lead']}</p>
           <dl class="facts">{facts}</dl>
+          {tools(p['tools']) if p.get('steps') else ''}
         </div>
         <div class="hero-visual frame frame--photo span-6 start-7">
           {img(p['cover'], p['cover_alt'], p['cover_alt_ar'], cls='frame__img', extra=f' style="view-transition-name: p-{p["slug"]}" fetchpriority="high"', lazy=False)}
@@ -205,6 +207,42 @@ def story(p):
 '''
 
 
+def story3d(p):
+    """The pinned 3D story: screens on a ring that turn with the scroll, an editor that explains each."""
+    st = p['steps']
+    cards = ''.join(
+        f'<figure class="s3__card">{shot(src, e, r, sizes="(min-width: 1024px) 250px, 46vw")}</figure>' for src, e, r, *_ in st)
+    steps = ''.join(
+        f'<div class="s3__step"><span class="s3__ln">{i * 3 + 1:02d}</span><div>'
+        f'<span class="c" data-ar="{a("// " + lab_ar)}">// {lab}</span>'
+        f'<h3 data-ar="{a(h_ar)}">{h}</h3><p data-ar="{a(b_ar)}">{b}</p></div></div>'
+        for i, (src, e, r, lab, lab_ar, h, h_ar, b, b_ar) in enumerate(st))
+    stack = ''.join(
+        f'<li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="{a(lab_ar)}">{lab}</span></button></li>'
+        for src, e, r, lab, lab_ar, *_ in st)
+    return f'''  <section class="s3" data-story aria-labelledby="s3-h">
+    <div class="s3__pin">
+      <div class="wrap">
+        <h2 id="s3-h" class="sr-only" data-ar="{a(p['s3_h_ar'])}">{p['s3_h']}</h2>
+        <div class="s3__grid">
+          <div class="s3__editor">
+            <div class="s3__tabs"><span class="dot" aria-hidden="true"></span><b>{p['slug']}.case</b><span>· {len(st)} steps</span></div>
+            <p class="s3__cmd" aria-hidden="true"><span class="p">$</span> <span data-type>open {p['slug']} --case-study</span><span class="caret"></span></p>
+            <div class="s3__steps">{steps}</div>
+            <ol class="s3__stack" aria-label="Steps" data-ar-aria="الخطوات">{stack}</ol>
+            <div class="s3__bar" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="s3__stage">
+            <div class="s3__ring">{cards}</div>
+            <p class="s3__count" aria-hidden="true"><b>01</b> / {len(st):02d}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+'''
+
+
 def section(sid, h, h_ar, line, line_ar, body):
     sub = f'<p data-ar="{a(line_ar)}">{line}</p>' if line else ''
     return f'''  <section class="section" id="{sid}" aria-labelledby="{sid}-h" style="height: auto">
@@ -221,11 +259,11 @@ def shots(items, five=False):
     return f'<ul class="{cls}" data-reveal="stagger">' + ''.join(f'<li>{shot(s, e, r)}</li>' for s, e, r in items) + '</ul>'
 
 
-def shot(src, en, ar):
+def shot(src, en, ar, sizes='(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw'):
     # a phone screen: four a row on a desktop, two on a phone, so a 340px copy for small screens
     w, h = Image.open(os.path.join(ROOT, 'img', src)).size
     sm = src.replace('.jpg', '-340.jpg')
-    srcset = f' srcset="../img/{sm} 340w, ../img/{src} {w}w" sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw"' if os.path.exists(os.path.join(ROOT, 'img', sm)) else ''
+    srcset = f' srcset="../img/{sm} 340w, ../img/{src} {w}w" sizes="{sizes}"' if os.path.exists(os.path.join(ROOT, 'img', sm)) else ''
     return f'<img src="../img/{src}"{srcset} width="{w}" height="{h}" alt="{a(en)}" data-ar-alt="{a(ar)}" loading="lazy">'
 
 
@@ -248,7 +286,7 @@ def nxt(p):
 P = []
 
 P.append(dict(
-    slug='bug-hunter', cover='cover-bug-hunter.jpg',
+    slug='bug-hunter', pc='#f2a93b', cover='cover-bug-hunter.jpg',
     title='Bug Hunter: a programming game, designed and built by Amer AL Dalaq',
     title_ar='Bug Hunter: لعبة برمجة صمّمها وبناها عامر الدلق',
     desc='How Bug Hunter 3.0 was redesigned in Figma to look like a real debugger, then rebuilt in Flutter and published on Google Play.',
@@ -274,36 +312,57 @@ P.append(dict(
     story_pic=('bug-hunter/design-system.jpg', 'The Bug Hunter 3.0 design system board: logo, colours, type and components',
                'لوحة نظام تصميم Bug Hunter 3.0: الشعار والألوان والخطوط والمكوّنات', '4 / 5', '50% 0%'),
     tools=['figma', 'flutter', 'play', 'claude'],
+    s3_h='Bug Hunter, screen by screen', s3_h_ar='Bug Hunter، شاشة شاشة',
+    steps=[
+        ('bug-hunter/v2-home.jpg', 'Version 2.0 home screen with neon gradients', 'الرئيسية في النسخة 2.0 بالتدرّجات اللامعة',
+         'before: v2.0', 'قبل: النسخة 2.0',
+         'Players said it looked AI-made', 'قال اللاعبون إنها تبدو مصنوعة بالذكاء الاصطناعي',
+         'Neon gradients, glowing cards and emoji everywhere. Some players did not believe a student had built it, so the look had to change, not the game.',
+         'تدرّجات لامعة وبطاقات مضيئة وإيموجي في كل مكان. بعض اللاعبين لم يصدّقوا أن طالباً بناها، فكان لا بد أن يتغيّر الشكل لا اللعبة.'),
+        ('bug-hunter/home.jpg', 'Version 3.0 home: the next level shown as a code editor', 'رئيسية النسخة 3.0: المرحلة التالية كمحرّر كود',
+         'home', 'الرئيسية',
+         'Home opens like a code editor', 'الرئيسية تُفتح كمحرّر كود',
+         'The next level waits in an editor tab with line numbers and the bug already marked. Players see code before they see a menu.',
+         'المرحلة التالية تنتظر في تبويب محرّر بأرقام أسطر والخطأ معلَّم مسبقاً. يرى اللاعب الكود قبل أن يرى أي قائمة.'),
+        ('bug-hunter/paths.jpg', 'Paths: the languages listed like a file explorer', 'المسارات: اللغات كمستكشف ملفات',
+         'paths', 'المسارات',
+         'Languages as a file explorer', 'اللغات كمستكشف ملفات',
+         'C++, Python, Java and the rest sit in an explorer tree with their progress, the way a programmer browses a project.',
+         'C++ وPython وJava وباقي اللغات في شجرة ملفات مع تقدّم كل منها، كما يتصفح المبرمج مشروعه.'),
+        ('bug-hunter/game.jpg', 'The game screen: the bug line underlined in red', 'شاشة اللعب: سطر الخطأ وتحته خط أحمر',
+         'game', 'اللعب',
+         'The bug gets a red squiggle', 'الخطأ تحته خط أحمر متموّج',
+         'The broken line has a <b>breakpoint dot</b> and a red squiggle, like a compiler warning. The output panel shows the real runtime error.',
+         'السطر الخاطئ عليه <b>نقطة توقف</b> وخط أحمر متموّج، كتحذير المترجم. ولوحة المخرجات تعرض خطأ التشغيل الحقيقي.'),
+        ('bug-hunter/result.jpg', 'Result: build passed, with the diff of the fix', 'النتيجة: نجح البناء مع الفرق بين السطرين',
+         'result', 'النتيجة',
+         'Build passed, with the diff', 'نجح البناء، مع الفرق',
+         'Instead of confetti, the player gets what a developer gets: <b>BUILD PASSED</b>, the time, the points and the red and green diff of the fixed line.',
+         'بدل الاحتفالات، يحصل اللاعب على ما يحصل عليه المطوّر: <b>BUILD PASSED</b>، والوقت، والنقاط، والفرق الأحمر والأخضر للسطر الذي أصلحه.'),
+        ('bug-hunter/daily-bug.jpg', 'The daily bug with a contribution graph', 'خطأ اليوم مع مخطط المساهمات',
+         'daily', 'اليومي',
+         'A contribution graph for streaks', 'مخطط مساهمات للأيام المتتالية',
+         'The daily bug keeps a grid of solved days in amber, the same graph programmers know from their code history.',
+         'خطأ اليوم يحفظ شبكة الأيام المحلولة باللون الكهرماني، المخطط نفسه الذي يعرفه المبرمجون من سجل أكوادهم.'),
+        ('bug-hunter/season.jpg', 'The season as a list of passed and failed tests', 'الموسم كقائمة اختبارات ناجحة وفاشلة',
+         'season', 'الموسم',
+         'The season as a test run', 'الموسم كتشغيل اختبارات',
+         'Each week is a test: PASS in green, FAIL in red. 25 phone and 3 tablet screens, all built from the same 10 components.',
+         'كل أسبوع اختبار: PASS بالأخضر وFAIL بالأحمر. 25 شاشة للجوال و3 للتابلت، كلها مبنية من المكوّنات العشرة نفسها.'),
+    ],
+
     body=lambda: (
-        section('screens', 'Version 3.0 phone screens', 'شاشات الجوال في النسخة 3.0',
-                'Every screen is built from the same 10 components: the code line, the tab, the panel, the tag and the rest.',
-                'كل شاشة مبنية من المكوّنات العشرة نفسها: سطر الكود والتبويب واللوحة والوسم وغيرها.',
-                shots([('bug-hunter/home.jpg', 'Home: the next level opened like a code editor', 'الرئيسية: المرحلة التالية مفتوحة كمحرّر كود'),
-                       ('bug-hunter/paths.jpg', 'Paths: languages listed like a file explorer', 'المسارات: اللغات كمستكشف ملفات'),
-                       ('bug-hunter/game.jpg', 'The game: the bug line underlined in red', 'اللعب: سطر الخطأ وتحته خط أحمر'),
-                       ('bug-hunter/result.jpg', 'Result: build passed, with the diff of the fix', 'النتيجة: نجح البناء مع الفرق بين السطرين'),
-                       ('bug-hunter/daily-bug.jpg', 'The daily bug with a contribution graph', 'خطأ اليوم مع مخطط المساهمات'),
-                       ('bug-hunter/season.jpg', 'The season as a list of passed and failed tests', 'الموسم كقائمة اختبارات ناجحة وفاشلة'),
-                       ('bug-hunter/boss-fight.jpg', 'A boss fight against a timer', 'مواجهة الزعيم مع مؤقّت'),
-                       ('bug-hunter/store.jpg', 'The points store with the Pro subscription', 'متجر النقاط مع اشتراك Pro')]))
-        + section('tablet', 'Tablet and brand', 'التابلت والهوية',
-                  'The tablet splits the code and the task side by side. The logo is two code braces holding a bug.',
-                  'في التابلت يظهر الكود والمهمة جنباً إلى جنب. والشعار قوسا كود يحتضنان حشرة.',
-                  wide([('bug-hunter/t2.jpg', 'The game on an iPad: code on one side, the task on the other', 'اللعب على الآيباد: الكود في جهة والمهمة في الأخرى'),
-                        ('bug-hunter/logo.jpg', 'The Bug Hunter logo: braces around a bug on amber', 'شعار Bug Hunter: قوسان حول حشرة على الكهرماني')]))
-        + section('before', 'Before: version 2.0', 'قبل: النسخة 2.0',
-                  'The look players doubted: neon gradients, glow and emoji. Same game, same content.',
-                  'الشكل الذي شكّك فيه اللاعبون: تدرّجات وتوهّج وإيموجي. اللعبة والمحتوى نفسهما.',
-                  shots([('bug-hunter/v2-home.jpg', 'Version 2.0 home screen', 'الرئيسية في النسخة 2.0'),
-                         ('bug-hunter/v2-paths.jpg', 'Version 2.0 paths', 'المسارات في النسخة 2.0'),
-                         ('bug-hunter/v2-level.jpg', 'Version 2.0 level', 'المرحلة في النسخة 2.0'),
-                         ('bug-hunter/v2-store.jpg', 'Version 2.0 store', 'المتجر في النسخة 2.0')]))
+        section('tablet', 'Tablet and brand', 'التابلت والهوية',
+                'The tablet splits the code and the task side by side. The logo is two code braces holding a bug.',
+                'في التابلت يظهر الكود والمهمة جنباً إلى جنب. والشعار قوسا كود يحتضنان حشرة.',
+                wide([('bug-hunter/t2.jpg', 'The game on an iPad: code on one side, the task on the other', 'اللعب على الآيباد: الكود في جهة والمهمة في الأخرى'),
+                      ('bug-hunter/logo.jpg', 'The Bug Hunter logo: braces around a bug on amber', 'شعار Bug Hunter: قوسان حول حشرة على الكهرماني')]))
     ),
     next=('reels', 'Reels for @bughunter_code', 'فيديوهات @bughunter_code'),
 ))
 
 P.append(dict(
-    slug='reels', cover='cover-reels.jpg',
+    slug='reels', pc='#8b6cff', cover='cover-reels.jpg',
     title='Reels for @bughunter_code by Amer AL Dalaq',
     title_ar='فيديوهات @bughunter_code من عامر الدلق',
     desc='Short animated videos for programming students, built in code with Remotion. One reached 112,700 views and 3,616 saves.',
@@ -329,6 +388,29 @@ P.append(dict(
     story_pic=('reels/r1_2.jpg', 'The opening frame of C++ in a minute: the glowing C++ letters over a grid floor',
                'اللقطة الأولى من فيديو C++ بدقيقة: حروف C++ المضيئة فوق أرضية شبكية', '9 / 16', '50% 50%'),
     tools=['react', 'claude'],
+    s3_h='The reels, one by one', s3_h_ar='الفيديوهات، واحداً واحداً',
+    steps=[
+        ('reels/r3_2.jpg', 'The i++ vs ++i quiz reel', 'فيديو سؤال i++ أم ++i',
+         'quiz reels', 'فيديوهات الأسئلة', 'Quizzes reached few people', 'الأسئلة وصلت لعدد قليل',
+         'The first quiz reels reached 250 to 600 people and almost nobody followed. The page needed a format students keep.',
+         'أول فيديوهات الأسئلة وصلت إلى 250 حتى 600 شخص، وتقريباً لم يتابع أحد. احتاجت الصفحة شكلاً يحتفظ به الطلاب.'),
+        ('reels/r4_20.jpg', 'A bug and its fix in the exam reel', 'خطأ وتصحيحه في فيديو الامتحان',
+         'exam bugs', 'أخطاء الامتحان', 'Bugs that cost exam marks', 'أخطاء تكلّف علامات بالامتحان',
+         'Three common bugs with the red line and its fix. Students saved it to revise later.',
+         'ثلاثة أخطاء شائعة مع السطر الأحمر وتصحيحه. حفظه الطلاب ليراجعوه لاحقاً.'),
+        ('reels/r2_2.jpg', 'The C++ cheat sheet reel', 'فيديو ملخص C++',
+         'cheat sheet', 'الملخص', 'A cheat sheet took off', 'ملخص انتشر',
+         '<b>40,100 views and 1,170 saves</b>: six rules of C++ in 30 seconds, right before exams.',
+         '<b>40,100 مشاهدة و1,170 حفظ</b>: ست قواعد في C++ خلال 30 ثانية، قبل الامتحانات مباشرة.'),
+        ('reels/r1_2.jpg', 'The opening of C++ in a minute', 'افتتاحية فيديو C++ بدقيقة',
+         'c++ in a minute', 'C++ بدقيقة', 'One hook, fast scenes', 'افتتاحية واحدة ومشاهد سريعة',
+         'An animated picture for each idea and captions word by word. <b>112,700 views and 3,616 saves.</b>',
+         'صورة متحركة لكل فكرة وترجمة كلمة بكلمة. <b>112,700 مشاهدة و3,616 حفظ.</b>'),
+        ('reels/r1_8.jpg', 'A scene about cout and cin', 'مشهد عن cout و cin',
+         'two voices', 'صوتان', 'Two voices, one for code', 'صوتان، أحدهما للكود',
+         'The first cut read code words badly. The fix: Arabic voice for the idea, an English voice for each code word.',
+         'النسخة الأولى نطقت كلمات الكود بشكل سيئ. الحل: صوت عربي للفكرة، وصوت إنجليزي لكل كلمة كود.'),
+    ],
     body=lambda: (
         section('films', 'Three reels to watch', 'ثلاثة فيديوهات للمشاهدة',
                 'Sound on: the voice is Arabic, the code words in English.',
@@ -356,7 +438,7 @@ P.append(dict(
 ))
 
 P.append(dict(
-    slug='wasla', cover='cover-wasla.jpg',
+    slug='wasla', pc='#c8f560', cover='cover-wasla.jpg',
     title='Wasla: brand identity for a design and app studio, by Amer AL Dalaq',
     title_ar='وَصلة: هوية بصرية لاستوديو تصميم وتطبيقات، من عامر الدلق',
     desc='Name, mark, colours and type for wasla, the studio Amer AL Dalaq sells design, apps and websites through.',
@@ -392,7 +474,7 @@ P.append(dict(
 
 M = lambda n, e, r: (f'masar/{n}.jpg', e, r)
 P.append(dict(
-    slug='masar', cover='cover-masar.jpg',
+    slug='masar', pc='#44bfb7', cover='cover-masar.jpg',
     title='Masar: a study app from the JORDAN.NEXT() hackathon, with Amer AL Dalaq',
     title_ar='مسار: تطبيق مذاكرة من هاكاثون JORDAN.NEXT()، بمشاركة عامر الدلق',
     desc='A team of three built Masar, an adaptive study app for university students. Amer made its colour system, dark mode, mentor welcome and profile screens.',
@@ -417,24 +499,44 @@ P.append(dict(
             'نظام الألوان، الكحلي ‎#24477B والتركوازي ‎#44BFB7، مع وضع داكن كامل؛ وشاشة ترحيب رفيق مع أربعة أسئلة مقترحة؛ والملف الشخصي بالإحصائيات والإتقان وإعداد المظهر.')],
     story_pic=('masar/08.jpg', 'Rafeeq’s welcome screen in dark mode', 'شاشة ترحيب رفيق في الوضع الداكن', '9 / 19.5', '50% 0%'),
     tools=['flutter', 'figma', 'claude'],
-    body=lambda: (
-        section('mine', 'The screens I designed', 'الشاشات التي صمّمتها',
-                'Rafeeq and the profile, in dark and light.', 'رفيق والملف الشخصي، بالداكن والفاتح.',
-                shots([M('08', 'Rafeeq welcome, dark', 'ترحيب رفيق، داكن'), M('09', 'Rafeeq welcome, light', 'ترحيب رفيق، فاتح'),
-                       M('10', 'Profile stats, dark', 'إحصائيات الملف، داكن'), M('12', 'Profile, light', 'الملف الشخصي، فاتح')]))
-        + section('flow', 'The rest of the app', 'باقي التطبيق',
-                  'Built by the team on the colours above.', 'بناها الفريق على الألوان نفسها.',
-                  shots([M('02', 'Onboarding: name, subject and exam date', 'البداية: الاسم والمادة وموعد الامتحان'),
-                         M('04', 'The diagnostic with instant feedback', 'التشخيص مع تصحيح فوري'),
-                         M('05', 'The concept map with readiness per topic', 'خريطة المفاهيم مع الجاهزية لكل موضوع'),
-                         M('06', 'Home: today’s plan', 'الرئيسية: خطة اليوم')]))
-    ),
+    s3_h='Masar, screen by screen', s3_h_ar='مسار، شاشة شاشة',
+    steps=[
+        ('masar/02.jpg', 'Onboarding: name, subject and exam date', 'البداية: الاسم والمادة وموعد الامتحان',
+         'onboarding', 'البداية', 'Three questions to start', 'ثلاثة أسئلة للبداية',
+         'Name, subject and exam date. Then eight short questions find where the student stands.',
+         'الاسم والمادة وموعد الامتحان. ثم ثمانية أسئلة قصيرة تحدد أين يقف الطالب.'),
+        ('masar/04.jpg', 'The diagnostic with instant feedback', 'التشخيص مع تصحيح فوري',
+         'diagnostic', 'التشخيص', 'Feedback on every answer', 'تصحيح فوري لكل إجابة',
+         'Wrong in red, right in green, and the readiness score moves at once: <b>+4%</b>.',
+         'الخطأ بالأحمر والصح بالأخضر، ونسبة الجاهزية تتحرك فوراً: <b>+4%</b>.'),
+        ('masar/05.jpg', 'The concept map with readiness per topic', 'خريطة المفاهيم مع الجاهزية لكل موضوع',
+         'map', 'الخريطة', 'Topics weighted by real exams', 'مواضيع مرتّبة حسب الامتحانات الحقيقية',
+         'Each topic shows how often it appears in past papers, so the weak and frequent ones come first.',
+         'كل موضوع يُظهر كم يتكرر في الامتحانات السابقة، فتأتي المواضيع الضعيفة والمتكررة أولاً.'),
+        ('masar/06.jpg', 'Home: today’s plan', 'الرئيسية: خطة اليوم',
+         'home', 'الرئيسية', 'A plan for today', 'خطة لليوم',
+         '16 minutes, 12 questions, on the three topics that matter most before the exam.',
+         '16 دقيقة و12 سؤالاً، على المواضيع الثلاثة الأهم قبل الامتحان.'),
+        ('masar/08.jpg', 'Rafeeq welcome, dark', 'ترحيب رفيق، داكن',
+         'rafeeq · my screen', 'رفيق · من تصميمي', 'Rafeeq says hello', 'رفيق يرحّب',
+         'I designed the mentor’s welcome: a big avatar over a teal glow and <b>four suggested questions</b> to start a chat.',
+         'صمّمت ترحيب المرشد: صورة كبيرة فوق توهّج تركوازي و<b>أربعة أسئلة مقترحة</b> لبدء المحادثة.'),
+        ('masar/10.jpg', 'Profile stats, dark', 'إحصائيات الملف، داكن',
+         'profile · my screen', 'الملف · من تصميمي', 'The profile in numbers', 'الملف الشخصي بالأرقام',
+         'Readiness, strong topics, answers so far and days to the exam, with a mastery bar from weak to strong.',
+         'الجاهزية والمواضيع القوية والإجابات حتى الآن والأيام حتى الامتحان، مع شريط إتقان من الضعيف للقوي.'),
+        ('masar/12.jpg', 'Profile, light', 'الملف الشخصي، فاتح',
+         'colours · my system', 'الألوان · من تصميمي', 'Dark and light, one system', 'داكن وفاتح بنظام واحد',
+         'Navy <b>#24477B</b> and teal <b>#44BFB7</b>, with a full dark mode that switches every screen at once.',
+         'كحلي <b>#24477B</b> وتركوازي <b>#44BFB7</b>، مع وضع داكن كامل يبدّل كل الشاشات مرة واحدة.'),
+    ],
+    body=lambda: '',
     next=('travel-jo', 'Travel JO', 'Travel JO'),
 ))
 
 T = lambda n, e, r: (f'travel-jo/{n}.jpg', e, r)
 P.append(dict(
-    slug='travel-jo', cover='cover-travel-jo.jpg',
+    slug='travel-jo', pc='#2ec4c9', cover='cover-travel-jo.jpg',
     title='Travel JO: a tourism app for Jordan, designed by Amer AL Dalaq',
     title_ar='Travel JO: تطبيق سياحي للأردن صمّمه عامر الدلق',
     desc='A learning project in Figma: a tourism app for Jordan in Arabic, English and French, with places, car rental, tour guides and payment.',
@@ -459,25 +561,50 @@ P.append(dict(
             'أسلوبه مبكر، تركوازي ومزدحم. لكنه علّمني الإطارات والمكوّنات وتخطيط ثلاث لغات، ولماذا يجب أن يأتي نظام التصميم أولاً.')],
     story_pic=('travel-jo/board.jpg', 'The whole Travel JO Figma board with all 221 frames', 'لوحة Travel JO كاملة في Figma بإطاراتها الـ 221', '1 / 2', '50% 30%'),
     tools=['figma'],
+    s3_h='Travel JO, screen by screen', s3_h_ar='Travel JO، شاشة شاشة',
+    steps=[
+        ('travel-jo/001.jpg', 'Welcome screen over Petra', 'شاشة الترحيب فوق البتراء',
+         'welcome', 'الترحيب', 'Petra as the front door', 'البتراء كباب الدخول',
+         'The app opens on the Treasury with the Jordanian flag in the logo, then sign in or sign up.',
+         'يفتح التطبيق على الخزنة مع علم الأردن في الشعار، ثم تسجيل الدخول أو إنشاء حساب.'),
+        ('travel-jo/012.jpg', 'The Petra page in Arabic', 'صفحة البتراء بالعربية',
+         'place · ar', 'مكان · عربي', 'Every place tells its story', 'كل مكان يحكي قصته',
+         'Photographs, history and reviews for each place, here Petra in Arabic.',
+         'صور وتاريخ ومراجعات لكل مكان، وهنا البتراء بالعربية.'),
+        ('travel-jo/017.jpg', 'The Petra page in French', 'صفحة البتراء بالفرنسية',
+         'place · fr', 'مكان · فرنسي', 'The same page in French', 'الصفحة نفسها بالفرنسية',
+         'Three languages, Arabic, English and French, each laid out for its own direction and length.',
+         'ثلاث لغات، العربية والإنجليزية والفرنسية، لكل منها تخطيط يناسب اتجاهها وطولها.'),
+        ('travel-jo/038.jpg', 'Places in virtual reality', 'الأماكن بالواقع الافتراضي',
+         'places', 'الأماكن', 'Places to visit', 'أماكن للزيارة',
+         'Umm Qais, Downtown Amman, Mount Nebo, Ma’in, Wadi Mujib: a list to explore before the trip.',
+         'أم قيس ووسط عمّان وجبل نيبو وماعين ووادي الموجب: قائمة لاستكشافها قبل الرحلة.'),
+        ('travel-jo/013.jpg', 'A car rental office', 'مكتب تأجير سيارات',
+         'cars', 'السيارات', 'Rent a car in the same app', 'استأجر سيارة من التطبيق نفسه',
+         'Rental offices with their photographs, cars and location, without leaving the trip.',
+         'مكاتب التأجير بصورها وسياراتها وموقعها، دون أن تترك رحلتك.'),
+        ('travel-jo/049.jpg', 'Tour guides', 'المرشدون السياحيون',
+         'guides', 'المرشدون', 'Find a tour guide', 'جد مرشداً سياحياً',
+         'A list of guides with the places they cover, ready to book.',
+         'قائمة مرشدين مع الأماكن التي يغطونها، جاهزة للحجز.'),
+        ('travel-jo/069.jpg', 'Settings and help', 'الإعدادات والمساعدة',
+         'settings', 'الإعدادات', 'Settings, language and help', 'الإعدادات واللغة والمساعدة',
+         'Saved trips, bookings, the language switch and a help centre with chat and WhatsApp.',
+         'الرحلات المحفوظة والحجوزات وتبديل اللغة ومركز مساعدة بالمحادثة وواتساب.'),
+    ],
     body=lambda: (
-        section('screens', 'Screens from the file', 'شاشات من الملف', '', '',
-                shots([T('001', 'Welcome screen over Petra', 'شاشة الترحيب فوق البتراء'),
-                       T('012', 'The Petra page in Arabic', 'صفحة البتراء بالعربية'),
-                       T('017', 'The Petra page in French', 'صفحة البتراء بالفرنسية'),
-                       T('038', 'Places in virtual reality', 'الأماكن بالواقع الافتراضي'),
-                       T('010', 'Sign up', 'إنشاء حساب'),
-                       T('013', 'A car rental office', 'مكتب تأجير سيارات'),
-                       T('049', 'Tour guides', 'المرشدون السياحيون'),
-                       T('069', 'Settings and help', 'الإعدادات والمساعدة')]))
+        section('board', 'The whole file', 'الملف كاملاً',
+                'All 221 frames in one Figma page.', 'كل الإطارات الـ 221 في صفحة واحدة في Figma.',
+                wide([('travel-jo/board.jpg', 'The whole Travel JO Figma board with all 221 frames', 'لوحة Travel JO كاملة في Figma بإطاراتها الـ 221')], one=True))
     ),
     next=('bug-hunter', 'Bug Hunter', 'Bug Hunter'),
 ))
 
 
 def build(p):
-    out = HEAD.format(title=a(p['title']), title_ar=a(p['title_ar']), desc=a(p['desc']), desc_ar=a(p['desc_ar']),
+    out = HEAD.format(pc=p.get('pc', '#f2a93b'), title=a(p['title']), title_ar=a(p['title_ar']), desc=a(p['desc']), desc_ar=a(p['desc_ar']),
                       cover=p['cover'], mail=MAIL)
-    out += hero(p) + story(p) + p['body']() + nxt(p)
+    out += hero(p) + (story3d(p) if p.get('steps') else story(p)) + p['body']() + nxt(p)
     out += FOOT.format(mail=MAIL, arrow=ARROW, slug=p['slug'])
     os.makedirs(os.path.join(ROOT, 'work'), exist_ok=True)
     with open(os.path.join(ROOT, 'work', p['slug'] + '.html'), 'w', encoding='utf-8', newline='\n') as f:

@@ -1,0 +1,110 @@
+/* The project story: a pinned, scroll-driven showcase in Amer's debugger style.
+   The screens stand on a ring in 3D and turn into place as the page scrolls; beside them an editor
+   panel explains each one, its title typed in like code. Without script or under reduced motion it is
+   a plain list: every step with its screen. */
+
+.s3 { --s3-bg: #101113; --s3-ink: #e7e4dc; --s3-dim: #8d8a82; --s3-line: #272a2f; --s3-amber: var(--pc, #f2a93b); --s3-red: #e5534b;
+  position: relative; background: var(--s3-bg); color: var(--s3-ink); }
+.s3__pin { position: relative; }
+.s3 .wrap { position: relative; z-index: 1; }
+
+/* ---- at rest (no script, reduced motion): a list */
+.s3__ring { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-5); padding: var(--s-6) 0; }
+.s3__card img { width: 100%; height: auto; display: block; border-radius: 14px; }
+.s3__steps { display: grid; gap: var(--s-6); padding: var(--s-6) 0; }
+.s3__stage, .s3__editor { min-width: 0; }
+@media (max-width: 767px) { .s3__ring { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ---- the editor panel (both states) */
+.s3__editor { border: 1px solid var(--s3-line); border-radius: 10px; background: #16181b; overflow: hidden; font-family: "IBM Plex Mono", ui-monospace, monospace; }
+.s3__tabs { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--s3-line); font-size: 13px; color: var(--s3-dim); }
+.s3__tabs b { color: var(--s3-ink); font-weight: 500; }
+.s3__tabs .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--s3-amber); flex: none; }
+.s3__cmd { padding: 14px 18px 0; font-size: 14px; color: var(--s3-dim); direction: ltr; text-align: left; min-height: 34px; }
+.s3__cmd .p { color: var(--s3-amber); }
+.s3__cmd .caret { display: inline-block; width: 8px; height: 16px; background: var(--s3-amber); vertical-align: -3px; margin-left: 2px; animation: s3-caret 1s steps(1) infinite; }
+@keyframes s3-caret { 50% { opacity: 0; } }
+.s3__step { display: grid; grid-template-columns: 34px minmax(0, 1fr); padding: 8px 18px 18px 0; }
+.s3__ln { font-size: 13px; line-height: 24px; color: #8b887f; text-align: right; padding-right: 12px; user-select: none; position: relative; }
+.s3__step .c { font-size: 13px; line-height: 24px; color: #9a968d; }
+.s3__step h3 { margin: 6px 0 10px; font: 500 clamp(22px, 1.6vw + 8px, 32px)/1.2 var(--font-display); letter-spacing: -0.01em; color: var(--s3-ink); min-height: 1.2em; }
+.s3__step p { margin: 0; font: 400 16px/1.65 var(--font-text); color: #c9c5bb; max-width: 46ch; }
+.s3__step p b { color: var(--s3-amber); font-weight: 500; }
+html[lang="ar"] .s3__step h3, html[lang="ar"] .s3__step p { font-family: var(--font-text); letter-spacing: 0; }
+
+/* the step list: a call stack you can click */
+.s3__stack { list-style: none; margin: 0; padding: 10px 0; border-top: 1px solid var(--s3-line); display: none; }
+.s3__stack button { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 10px; width: 100%; min-height: 30px; padding: 3px 18px; font: 13px/1.4 "IBM Plex Mono", ui-monospace, monospace; color: var(--s3-dim); cursor: pointer; }
+.s3__stack button:focus-visible { outline: 2px solid var(--s3-amber); outline-offset: -2px; }
+.s3__stack .bp { width: 9px; height: 9px; border-radius: 50%; border: 1px solid #4b4d52; flex: none; transition: background-color 200ms, border-color 200ms; }
+.s3__stack li.is-on button { color: var(--s3-ink); background: #1d2024; }
+.s3__stack li.is-on .bp { background: var(--s3-red); border-color: var(--s3-red); }
+@media (hover: hover) and (pointer: fine) { .s3__stack button:hover { color: var(--s3-ink); } }
+.s3__bar { height: 2px; background: var(--s3-line); }
+.s3__bar i { display: block; height: 100%; width: 100%; background: var(--s3-amber); transform-origin: left; transform: scaleX(var(--p, 0)); }
+html[dir="rtl"] .s3__bar i { transform-origin: right; }
+
+/* ---- live: pinned, the ring turns with the scroll */
+.s3.is-live { height: calc(var(--n, 6) * 62svh + 100svh); }
+.s3.is-live .s3__pin { position: sticky; top: 0; height: 100svh; overflow: hidden; display: flex; align-items: center;
+  padding-top: var(--nav); box-sizing: border-box; }
+/* the amber dot field drifts with the scroll (a transform: cheap); a still vignette over it fades the edges */
+.s3.is-live .s3__pin::before { content: ""; position: absolute; inset: -200px 0; pointer-events: none; will-change: transform;
+  background-image: radial-gradient(circle, color-mix(in oklab, var(--pc, #f2a93b) 24%, transparent) 1px, transparent 1.6px); background-size: 26px 26px;
+  transform: translate3d(0, calc(var(--p, 0) * -180px), 0); }
+.s3.is-live .s3__pin::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(62% 58% at 70% 50%, transparent 0%, var(--s3-bg) 78%); }
+html[dir="rtl"] .s3.is-live .s3__pin::after { background: radial-gradient(62% 58% at 30% 50%, transparent 0%, var(--s3-bg) 78%); }
+.s3.is-live .s3__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-7); align-items: center; width: 100%; }
+.s3.is-live .s3__stack { display: block; }
+.s3.is-live .s3__steps { position: relative; padding: 0; display: block; min-height: 250px; }
+.s3.is-live .s3__step { position: absolute; inset: 0 0 auto 0; opacity: 0; transform: translateY(-8px); pointer-events: none;
+  transition: opacity 140ms ease-out, transform 140ms ease-out; }
+.s3.is-live .s3__step.is-on { opacity: 1; transform: none; pointer-events: auto;
+  transition: opacity 420ms cubic-bezier(.23, 1, .32, 1) 160ms, transform 560ms cubic-bezier(.23, 1, .32, 1) 160ms; }
+.s3.is-live .s3__step:not(.is-on) { transform: translateY(-8px); }
+.s3.is-live .s3__step.is-on { animation: s3-in 560ms cubic-bezier(.23, 1, .32, 1) 160ms backwards; }
+@keyframes s3-in { from { opacity: 0; transform: translateY(14px); } }
+.s3.is-live .s3__step.is-on .s3__ln::after { content: ""; position: absolute; left: 2px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--s3-red); }
+
+.s3.is-live .s3__stage { position: relative; height: min(74svh, 720px); perspective: 1500px; perspective-origin: 50% 40%; }
+.s3.is-live .s3__ring { --cw: min(27svh, 270px); position: absolute; left: 50%; top: 50%; width: var(--cw); height: calc(var(--cw) * 2.164);
+  margin: calc(var(--cw) * -1.082) 0 0 calc(var(--cw) * -.5); padding: 0; display: block; transform-style: preserve-3d;
+  transform: translateZ(calc(var(--r) * -1)) rotateX(-9deg) rotateY(var(--turn, 0deg)); }
+.s3.is-live .s3__card { position: absolute; inset: 0; transform: rotateY(var(--a)) translateZ(calc(var(--r) + var(--lift, 0) * 60px)) scale(calc(1 + var(--lift, 0) * .04)); backface-visibility: hidden;
+  border-radius: 16px; overflow: hidden; background: #16181b; box-shadow: 0 0 0 1px #2c2f35, 0 30px 60px -20px rgba(0, 0, 0, .7); }
+.s3.is-live .s3__card img { height: 100%; object-fit: cover; object-position: top; border-radius: 0; }
+.s3.is-live .s3__card::before { content: ""; position: absolute; inset: 0; background: #0b0c0e; opacity: var(--shade, 0); pointer-events: none; z-index: 1; }
+/* the screen that comes to the front is redrawn: one amber scan line passes over it */
+.s3.is-live .s3__card::after { content: ""; position: absolute; left: 0; right: 0; top: -12%; height: 12%; z-index: 2; pointer-events: none; opacity: 0;
+  background: linear-gradient(to bottom, transparent, color-mix(in oklab, var(--pc, #f2a93b) 38%, transparent) 70%, color-mix(in oklab, var(--pc, #f2a93b) 90%, transparent) 98%, transparent); }
+.s3.is-live .s3__card.is-scan::after { animation: s3-scan 760ms cubic-bezier(.65, 0, .35, 1); }
+@keyframes s3-scan { 0% { opacity: 1; transform: translateY(0); } 85% { opacity: 1; } 100% { opacity: 0; transform: translateY(950%); } }
+.s3__count { position: absolute; top: 4px; inset-inline-end: 0; font: 13px/1 "IBM Plex Mono", ui-monospace, monospace; color: var(--s3-dim); direction: ltr; }
+.s3__count b { color: var(--s3-amber); font-weight: 500; }
+.s3:not(.is-live) .s3__count { display: none; }
+
+@media (max-width: 1023px) {
+  .s3.is-live .s3__pin { align-items: stretch; }
+  .s3.is-live .s3__grid { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; gap: var(--s-4); height: 100%; padding: var(--s-4) 0 var(--s-5); }
+  .s3.is-live .s3__stage { order: -1; height: auto; min-height: 0; }
+  .s3.is-live .s3__ring { --cw: min(22svh, 46vw, 260px); }
+  .s3.is-live .s3__stack { display: none; }
+  .s3.is-live .s3__steps { min-height: 210px; }
+  .s3__step h3 { font-size: 22px; }
+  .s3__step p { font-size: 15px; line-height: 1.55; }
+  .s3.is-live .s3__pin::after { background: radial-gradient(80% 45% at 50% 35%, transparent 0%, var(--s3-bg) 80%); }
+}
+
+/* short laptop screens: smaller screens on the ring, the step list folds away */
+.s3.is-live .s3__ring { top: 47%; }
+@media (min-width: 1024px) and (max-height: 860px) {
+  .s3.is-live .s3__ring { --cw: min(27svh, 250px); }
+  .s3.is-live .s3__stack { display: none; }
+  .s3.is-live .s3__steps { min-height: 230px; }
+  .s3.is-live .s3__stage { height: min(80svh, 640px); }
+}
+
+/* the project's own colour glows behind the ring */
+.s3.is-live .s3__stage::before { content: ""; position: absolute; inset: 10% 5%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--pc, #f2a93b) 22%, transparent), transparent); }

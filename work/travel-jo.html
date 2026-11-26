@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-type="service" data-radius="soft" data-buttons="tonal" data-motion>
+<html lang="en" data-type="service" data-radius="soft" data-buttons="pill" data-motion style="--pc: #2ec4c9">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -11,7 +11,7 @@
 <meta property="og:image" content="../img/cover-travel-jo.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#f5f2ea">
+<meta name="theme-color" content="#0d0e10">
 <meta name="site-kind" content="other">
 <meta name="page-type" content="service">
 <script>
@@ -20,7 +20,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@400&family=Work+Sans:wght@400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Serif:ital@1&family=Work+Sans:wght@400..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/system.css">
 <link rel="stylesheet" href="../assets/ui/cards.css">
 <link rel="stylesheet" href="../assets/motion/motion.css">
@@ -28,16 +28,17 @@
 <link rel="stylesheet" href="../assets/icons/icon.css">
 <style>
 :root {
-  --p-bg: #f5f2ea; --p-surface: #ebe6da; --p-ink: #16181b; --p-muted: #5f5b53;
-  --p-accent: #f2a93b; --p-accent-ink: #111111; --p-action: #f2a93b; --p-action-ink: #111111;
-  --p-inv-bg: #16181b; --p-inv-surface: #232427; --p-inv-ink: #f5f2ea; --p-inv-muted: #979794;
-  --p-inv-accent: #f2a93b; --p-inv-accent-ink: #111111; --p-inv-action: #f2a93b; --p-inv-action-ink: #111111;
-  --font-display: "Vollkorn", Georgia, serif;
+  --p-bg: #0d0e10; --p-surface: #16181b; --p-ink: #f2efe8; --p-muted: #9a968d;
+  --p-accent: #2ec4c9; --p-accent-ink: #111111; --p-action: #2ec4c9; --p-action-ink: #111111;
+  --p-inv-bg: #16181b; --p-inv-surface: #1d2024; --p-inv-ink: #f2efe8; --p-inv-muted: #9a968d;
+  --p-inv-accent: #2ec4c9; --p-inv-accent-ink: #111111; --p-inv-action: #2ec4c9; --p-inv-action-ink: #111111;
+  --font-display: "Bricolage Grotesque", "Work Sans", system-ui, sans-serif;
   --font-text: "Work Sans", system-ui, sans-serif;
-  --display-weight: 400; --display-tracking: -0.015em; --display-tracking-xl: -0.02em; --ly-scale: 1.04;
+  --display-weight: 700; --display-tracking: -0.035em; --display-tracking-xl: -0.045em; --ly-scale: 1.04;
 }
 </style>
 <link rel="stylesheet" href="../site.css">
+<link rel="stylesheet" href="../story3d.css">
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
 <body>
@@ -64,10 +65,10 @@
     <div class="wrap">
       <div class="hero-text grid hero-split">
         <div class="hero-copy span-6">
-          <p class="hero-notice" data-ar="مشروع تعلّم فردي · Figma">Solo learning project · Figma</p>
           <h1 id="hero-h" data-ar="Travel JO، تطبيق سياحي للأردن">Travel JO, a tourism app for Jordan</h1>
           <p class="t-lead" data-ar="أول ملف كبير لي في Figma، صمّمته على مدى ثمانية أشهر: أماكن مثل البتراء ووادي الموجب، ومكاتب تأجير السيارات، والمرشدون، والدفع، بالعربية والإنجليزية والفرنسية.">My first big Figma file, designed over eight months: places like Petra and Wadi Mujib, car rental offices, tour guides and payment, in Arabic, English and French.</p>
           <dl class="facts"><div><dt data-ar="دوري">My role</dt><dd data-ar="كل الشاشات">Every screen</dd></div><div><dt data-ar="المدة">Length</dt><dd data-ar="نحو ثمانية أشهر">About eight months</dd></div><div><dt data-ar="الإطارات">Frames</dt><dd data-ar="221 في ملف واحد">221 in one file</dd></div></dl>
+          <ul class="tools"><li><img src="../assets/icons/figma.svg" alt="" width="27" height="40" loading="lazy">Figma</li></ul>
         </div>
         <div class="hero-visual frame frame--photo span-6 start-7">
           <img class="frame__img" src="../img/cover-travel-jo.jpg" srcset="../img/cover-travel-jo-800.jpg 800w, ../img/cover-travel-jo.jpg 1200w" sizes="(min-width: 1024px) 45vw, 92vw" width="1200" height="900" alt="Travel JO welcome screen over Petra, the Petra page and a list of places" data-ar-alt="شاشة ترحيب Travel JO فوق البتراء، وصفحة البتراء، وقائمة أماكن" style="view-transition-name: p-travel-jo" fetchpriority="high">
@@ -75,25 +76,30 @@
       </div>
     </div>
   </section>
-  <section class="section" id="story" aria-labelledby="story-h" style="height: auto">
-    <div class="wrap">
-      <div class="grid grid--top">
-        <div class="span-5">
-          <h2 id="story-h" data-ar="ما حاولت حلّه">What I was trying to solve</h2>
-          <div class="story" data-reveal="stagger"><div><h3 data-ar="المشكلة">The problem</h3><p data-ar="زائر الأردن يتنقّل بين مواقع كثيرة ليقرأ عن مكان ويستأجر سيارة ويجد مرشداً.">A visitor to Jordan jumps between sites to read about a place, rent a car and find a guide.</p></div><div><h3 data-ar="الفكرة">The idea</h3><p data-ar="تطبيق واحد للثلاثة، بلغة الزائر: كل مكان بقصته وصوره، ومكاتب التأجير بسياراتها، والمرشدون، والرحلات المحفوظة، والدفع.">One app for all three, in the visitor’s language: each place with its story and photographs, rental offices with their cars, guides, saved trips and payment.</p></div><div><h3 data-ar="ما تعلّمته">What I learned</h3><p data-ar="أسلوبه مبكر، تركوازي ومزدحم. لكنه علّمني الإطارات والمكوّنات وتخطيط ثلاث لغات، ولماذا يجب أن يأتي نظام التصميم أولاً.">It is an early style, teal and busy. Working on it taught me frames, components and three-language layouts, and why a design system has to come first.</p></div></div>
-          <h3 class="t-label" style="margin-top: var(--s-7); color: var(--muted)" data-ar="الأدوات">Tools</h3>
-          <ul class="tools"><li><img src="../assets/icons/figma.svg" alt="" width="27" height="40" loading="lazy">Figma</li></ul>
-        </div>
-        <div class="frame frame--photo span-6 start-7" style="aspect-ratio: 4 / 5; max-height: 708px" data-reveal-img>
-          <img class="frame__img" src="../img/travel-jo/board.jpg" srcset="../img/travel-jo/board-800.jpg 800w, ../img/travel-jo/board.jpg 1600w" sizes="(min-width: 1024px) 45vw, 92vw" width="1600" height="3202" alt="The whole Travel JO Figma board with all 221 frames" data-ar-alt="لوحة Travel JO كاملة في Figma بإطاراتها الـ 221" loading="lazy" style="object-position: 50% 30%">
+  <section class="s3" data-story aria-labelledby="s3-h">
+    <div class="s3__pin">
+      <div class="wrap">
+        <h2 id="s3-h" class="sr-only" data-ar="Travel JO، شاشة شاشة">Travel JO, screen by screen</h2>
+        <div class="s3__grid">
+          <div class="s3__editor">
+            <div class="s3__tabs"><span class="dot" aria-hidden="true"></span><b>travel-jo.case</b><span>· 7 steps</span></div>
+            <p class="s3__cmd" aria-hidden="true"><span class="p">$</span> <span data-type>open travel-jo --case-study</span><span class="caret"></span></p>
+            <div class="s3__steps"><div class="s3__step"><span class="s3__ln">01</span><div><span class="c" data-ar="// الترحيب">// welcome</span><h3 data-ar="البتراء كباب الدخول">Petra as the front door</h3><p data-ar="يفتح التطبيق على الخزنة مع علم الأردن في الشعار، ثم تسجيل الدخول أو إنشاء حساب.">The app opens on the Treasury with the Jordanian flag in the logo, then sign in or sign up.</p></div></div><div class="s3__step"><span class="s3__ln">04</span><div><span class="c" data-ar="// مكان · عربي">// place · ar</span><h3 data-ar="كل مكان يحكي قصته">Every place tells its story</h3><p data-ar="صور وتاريخ ومراجعات لكل مكان، وهنا البتراء بالعربية.">Photographs, history and reviews for each place, here Petra in Arabic.</p></div></div><div class="s3__step"><span class="s3__ln">07</span><div><span class="c" data-ar="// مكان · فرنسي">// place · fr</span><h3 data-ar="الصفحة نفسها بالفرنسية">The same page in French</h3><p data-ar="ثلاث لغات، العربية والإنجليزية والفرنسية، لكل منها تخطيط يناسب اتجاهها وطولها.">Three languages, Arabic, English and French, each laid out for its own direction and length.</p></div></div><div class="s3__step"><span class="s3__ln">10</span><div><span class="c" data-ar="// الأماكن">// places</span><h3 data-ar="أماكن للزيارة">Places to visit</h3><p data-ar="أم قيس ووسط عمّان وجبل نيبو وماعين ووادي الموجب: قائمة لاستكشافها قبل الرحلة.">Umm Qais, Downtown Amman, Mount Nebo, Ma’in, Wadi Mujib: a list to explore before the trip.</p></div></div><div class="s3__step"><span class="s3__ln">13</span><div><span class="c" data-ar="// السيارات">// cars</span><h3 data-ar="استأجر سيارة من التطبيق نفسه">Rent a car in the same app</h3><p data-ar="مكاتب التأجير بصورها وسياراتها وموقعها، دون أن تترك رحلتك.">Rental offices with their photographs, cars and location, without leaving the trip.</p></div></div><div class="s3__step"><span class="s3__ln">16</span><div><span class="c" data-ar="// المرشدون">// guides</span><h3 data-ar="جد مرشداً سياحياً">Find a tour guide</h3><p data-ar="قائمة مرشدين مع الأماكن التي يغطونها، جاهزة للحجز.">A list of guides with the places they cover, ready to book.</p></div></div><div class="s3__step"><span class="s3__ln">19</span><div><span class="c" data-ar="// الإعدادات">// settings</span><h3 data-ar="الإعدادات واللغة والمساعدة">Settings, language and help</h3><p data-ar="الرحلات المحفوظة والحجوزات وتبديل اللغة ومركز مساعدة بالمحادثة وواتساب.">Saved trips, bookings, the language switch and a help centre with chat and WhatsApp.</p></div></div></div>
+            <ol class="s3__stack" aria-label="Steps" data-ar-aria="الخطوات"><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="الترحيب">welcome</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="مكان · عربي">place · ar</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="مكان · فرنسي">place · fr</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="الأماكن">places</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="السيارات">cars</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="المرشدون">guides</span></button></li><li><button type="button"><span class="bp" aria-hidden="true"></span><span data-ar="الإعدادات">settings</span></button></li></ol>
+            <div class="s3__bar" aria-hidden="true"><i></i></div>
+          </div>
+          <div class="s3__stage">
+            <div class="s3__ring"><figure class="s3__card"><img src="../img/travel-jo/001.jpg" width="226" height="491" alt="Welcome screen over Petra" data-ar-alt="شاشة الترحيب فوق البتراء" loading="lazy"></figure><figure class="s3__card"><img src="../img/travel-jo/012.jpg" width="206" height="524" alt="The Petra page in Arabic" data-ar-alt="صفحة البتراء بالعربية" loading="lazy"></figure><figure class="s3__card"><img src="../img/travel-jo/017.jpg" width="206" height="524" alt="The Petra page in French" data-ar-alt="صفحة البتراء بالفرنسية" loading="lazy"></figure><figure class="s3__card"><img src="../img/travel-jo/038.jpg" width="197" height="430" alt="Places in virtual reality" data-ar-alt="الأماكن بالواقع الافتراضي" loading="lazy"></figure><figure class="s3__card"><img src="../img/travel-jo/013.jpg" width="226" height="491" alt="A car rental office" data-ar-alt="مكتب تأجير سيارات" loading="lazy"></figure><figure class="s3__card"><img src="../img/travel-jo/049.jpg" width="198" height="430" alt="Tour guides" data-ar-alt="المرشدون السياحيون" loading="lazy"></figure><figure class="s3__card"><img src="../img/travel-jo/069.jpg" width="197" height="430" alt="Settings and help" data-ar-alt="الإعدادات والمساعدة" loading="lazy"></figure></div>
+            <p class="s3__count" aria-hidden="true"><b>01</b> / 07</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  <section class="section" id="screens" aria-labelledby="screens-h" style="height: auto">
+  <section class="section" id="board" aria-labelledby="board-h" style="height: auto">
     <div class="wrap">
-      <div class="section-head"><h2 id="screens-h" data-ar="شاشات من الملف">Screens from the file</h2></div>
-      <ul class="shots" data-reveal="stagger"><li><img src="../img/travel-jo/001.jpg" width="226" height="491" alt="Welcome screen over Petra" data-ar-alt="شاشة الترحيب فوق البتراء" loading="lazy"></li><li><img src="../img/travel-jo/012.jpg" width="206" height="524" alt="The Petra page in Arabic" data-ar-alt="صفحة البتراء بالعربية" loading="lazy"></li><li><img src="../img/travel-jo/017.jpg" width="206" height="524" alt="The Petra page in French" data-ar-alt="صفحة البتراء بالفرنسية" loading="lazy"></li><li><img src="../img/travel-jo/038.jpg" width="197" height="430" alt="Places in virtual reality" data-ar-alt="الأماكن بالواقع الافتراضي" loading="lazy"></li><li><img src="../img/travel-jo/010.jpg" width="226" height="490" alt="Sign up" data-ar-alt="إنشاء حساب" loading="lazy"></li><li><img src="../img/travel-jo/013.jpg" width="226" height="491" alt="A car rental office" data-ar-alt="مكتب تأجير سيارات" loading="lazy"></li><li><img src="../img/travel-jo/049.jpg" width="198" height="430" alt="Tour guides" data-ar-alt="المرشدون السياحيون" loading="lazy"></li><li><img src="../img/travel-jo/069.jpg" width="197" height="430" alt="Settings and help" data-ar-alt="الإعدادات والمساعدة" loading="lazy"></li></ul>
+      <div class="section-head"><h2 id="board-h" data-ar="الملف كاملاً">The whole file</h2><p data-ar="كل الإطارات الـ 221 في صفحة واحدة في Figma.">All 221 frames in one Figma page.</p></div>
+      <div class="wide wide--one" data-reveal="stagger"><img src="../img/travel-jo/board.jpg" srcset="../img/travel-jo/board-800.jpg 800w, ../img/travel-jo/board.jpg 1600w" sizes="(min-width: 1024px) 45vw, 92vw" width="1600" height="3202" alt="The whole Travel JO Figma board with all 221 frames" data-ar-alt="لوحة Travel JO كاملة في Figma بإطاراتها الـ 221" loading="lazy"></div>
     </div>
   </section>
   <section class="section" aria-label="Next project" data-ar-aria="المشروع التالي" style="height: auto; padding-top: 0">
@@ -144,6 +150,7 @@
   </div>
 </footer>
 <script type="module" src="../site.js"></script>
+<script type="module" src="../story3d.js"></script>
 <script type="module" src="../assets/system.js"></script>
 <script type="module" src="../assets/motion/motion.js"></script>
 <script type="module" src="../assets/layout/layout.js"></script>
